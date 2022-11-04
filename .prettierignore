@@ -1,0 +1,8 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all Amplify files:
+*aws-exports.js
+amplify/*
+*/models/*

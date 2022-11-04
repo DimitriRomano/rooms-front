@@ -1,1 +1,46 @@
+$laurel-green : #a3b18a;
+$fern-green : #588157;
+$hunter-green : #3a5a40;
+$brunswick-green: #344e41;
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$rooms-front-primary: mat.define-palette(mat.$green-palette, 900);
+$rooms-front-accent: mat.define-palette(mat.$light-green-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$rooms-front-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$rooms-front-theme: mat.define-light-theme((
+  color: (
+    primary: $rooms-front-primary,
+    accent: $rooms-front-accent,
+    warn: $rooms-front-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($rooms-front-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

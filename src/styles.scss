@@ -27,3 +27,6 @@ $rooms-front-theme: mat.define-light-theme((
 
 html, body { height: 100%; box-sizing: border-box; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.rotate-180{
+  transform: rotate(180deg);
+}

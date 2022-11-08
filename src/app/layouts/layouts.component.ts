@@ -7,23 +7,14 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./layouts.component.scss']
 })
 export class LayoutsComponent implements OnInit {
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  constructor() {}
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(min-width: 1000px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-
-  ngOnInit(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
+  ngOnInit(): void {}
 
   openNav() {
     let button = document.getElementById('open_sidebar_icon');
     if (button) {
-      button.classList.toggle('rotate-180');
+      button.classList.toggle('rotate-270');
     }
   }
 }

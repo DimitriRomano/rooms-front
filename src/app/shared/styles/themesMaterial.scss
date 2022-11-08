@@ -6,3 +6,11 @@
   display: flex;
   align-items: center;
 }
+
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+
+.mat-drawer-side {
+  border-right: none;
+}

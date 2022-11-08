@@ -2,16 +2,16 @@
 @import "src/styles.scss";
 @import "src/variable.scss";
 
-.sidenav-content-client app-logo {
-  margin: 1.5rem 0;
-  text-align: center;
-}
-
 .sidenav-content-client{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2.5rem;
+  height: 100%;
+}
+
+.sidenav-content-client app-logo {
+  margin: 1.5rem 0;
+  text-align: center;
 }
 
 .sidenav-content-client a{
@@ -22,7 +22,7 @@
   width: 100%;
   text-align: left;
   border-radius: 64px 0 0 64px;
-  transition: 0.3s ease;
+  letter-spacing: 0.5px;
 }
 
 .sidenav-content-client a, mat-icon{
@@ -31,11 +31,16 @@
 }
 
 .sidenav-content-client a:hover,
-.sidenav-content-client a:hover mat-icon,
 .sidenav-content-client a.active,
 .sidenav-content-client a.active:hover{
   background-color: #fafafa;
   color: map.get($p-primary, 900);
+  outline : 3px solid $accent;
+}
+
+.sidenav-content-client a:hover mat-icon,
+.sidenav-content-client a:hover mat-icon,{
+  color: $accent;
 }
 
 .sidenav-content-client mat-icon{
@@ -46,3 +51,4 @@
   display: flex;
   align-items: center;
 }
+

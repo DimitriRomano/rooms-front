@@ -1,4 +1,8 @@
-.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
-  border-radius: 10px !important;
-}
+//.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+//  border-radius: 6px !important;
+//}
 
+.mat-button-wrapper {
+  display: flex;
+  align-items: center;
+}

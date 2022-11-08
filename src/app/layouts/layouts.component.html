@@ -1,0 +1,13 @@
+<p>layout.html</p>
+<div class='main-layout'>
+  <mat-drawer-container class="example-container">
+    <mat-drawer #drawer mode="side" opened='true'>
+      <app-sidebar-client></app-sidebar-client>
+    </mat-drawer>
+    <mat-drawer-content>
+      <button mat-raised-button class='open-sidebar-button' (click)="drawer.toggle(); openNav()"><mat-icon id='open_sidebar_icon'>navigate_before</mat-icon></button>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  <div class='content-container'></div>
+</div>
+

@@ -1,0 +1,48 @@
+@use "sass:map";
+@import "src/styles.scss";
+@import "src/variable.scss";
+
+.sidenav-content-client app-logo {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.sidenav-content-client{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.sidenav-content-client a{
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 1rem;
+  padding: 2rem 4rem;
+  width: 100%;
+  text-align: left;
+  border-radius: 64px 0 0 64px;
+  transition: 0.3s ease;
+}
+
+.sidenav-content-client a, mat-icon{
+  color: map.get($p-primary, 200);
+  font-size: 1.5rem;
+}
+
+.sidenav-content-client a:hover,
+.sidenav-content-client a:hover mat-icon,
+.sidenav-content-client a.active,
+.sidenav-content-client a.active:hover{
+  background-color: #fafafa;
+  color: map.get($p-primary, 900);
+}
+
+.sidenav-content-client mat-icon{
+  margin-right: 16px;
+}
+
+.mat-button-wrapper {
+  display: flex;
+  align-items: center;
+}

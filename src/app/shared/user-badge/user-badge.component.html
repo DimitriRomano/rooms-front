@@ -1,0 +1,23 @@
+<div class="w-full bg-white">
+  <div class="flex items-center space-y-1 ml-2 py-1 ">
+    <img class=" w-[2.5rem] h-[2.5rem] rounded-full " src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+         alt="Image de profil">
+    <div class=" ml-2 font-bold">{{firstName}} {{lastName}}</div>
+    <div class="ml-auto">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profil</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>manage_accounts</mat-icon>
+          <span>Profil</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+

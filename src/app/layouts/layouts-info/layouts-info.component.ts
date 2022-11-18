@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faker } from '@faker-js/faker';
+
 
 @Component({
   selector: 'app-layouts-info',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutsInfoComponent implements OnInit {
 
+  firstName = faker.name.firstName();
+  lastName = faker.name.lastName();
   constructor() { }
 
   ngOnInit(): void {

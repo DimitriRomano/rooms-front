@@ -1,6 +1,12 @@
+
+
 @use '@angular/material' as mat;
 @import 'src/variable.scss';
 @include mat.core();
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 //Material theme
 $rooms-front-primary: mat.define-palette($p-primary, 900);

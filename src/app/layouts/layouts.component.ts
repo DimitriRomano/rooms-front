@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-layouts',
@@ -7,6 +8,9 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./layouts.component.scss']
 })
 export class LayoutsComponent implements OnInit {
+
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  reason = '';
   constructor() {}
 
   ngOnInit(): void {}
@@ -17,4 +21,12 @@ export class LayoutsComponent implements OnInit {
       button.classList.toggle('rotate-270');
     }
   }
+
+
+
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
+  }
+
 }

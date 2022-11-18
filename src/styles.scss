@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import 'src/variable.scss';
+@include mat.core();
+
+//Material theme
+$rooms-front-primary: mat.define-palette($p-primary, 900);
+$rooms-front-accent: mat.define-palette($p-accent, 700);
+
+$rooms-front-warn: mat.define-palette(mat.$red-palette, A100);
+
+$rooms-front-theme: mat.define-light-theme((
+  color: (
+    primary: $rooms-front-primary,
+    accent: $rooms-front-accent,
+    warn: $rooms-front-warn,
+  )
+));
+
+@include mat.all-component-themes($rooms-front-theme);
+
+//Global
+
+@font-face {
+  font-family: 'ApfelGrotezk';
+  src: local('ApfelGrotezk'), url('./assets/fonts/ApfelGrotezk-Regular.woff') format('woff');
+}
+
+html, body { height: 100%; box-sizing: border-box; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.rotate-180{
+  transform: rotate(180deg);
+}

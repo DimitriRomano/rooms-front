@@ -4,10 +4,12 @@ import { SidebarClientComponent } from './sidebar-client/sidebar-client.componen
 import { AngularMaterialModule } from '../angular-material.module';
 import { LogoComponent } from './logo/logo.component';
 import { CardHotelComponent } from './card-hotel/card-hotel.component';
+import { UserBadgeComponent } from './user-badge/user-badge.component';
+import { HotelImagesGridComponent } from './hotel-images-grid/hotel-images-grid.component';
 
 @NgModule({
-  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent],
-  exports: [SidebarClientComponent, LogoComponent, CardHotelComponent],
+  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, HotelImagesGridComponent],
+    exports: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, HotelImagesGridComponent],
   imports: [CommonModule, AngularMaterialModule]
 })
 export class SharedModule {}

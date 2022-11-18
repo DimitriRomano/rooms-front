@@ -4,7 +4,6 @@
 @import 'src/variable.scss';
 @include mat.core();
 
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -31,8 +30,10 @@ $rooms-front-theme: mat.define-light-theme((
   src: local('ApfelGrotezk'), url('./assets/fonts/ApfelGrotezk-Regular.woff') format('woff');
 }
 
-html, body { height: 100%; box-sizing: border-box; }
+html, body { height: 100%; box-sizing: border-box;  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .rotate-180{
   transform: rotate(180deg);
 }
+
+

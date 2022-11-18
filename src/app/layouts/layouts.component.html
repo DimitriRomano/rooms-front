@@ -1,21 +1,19 @@
-<p>layout.html</p>
 <mat-sidenav-container class="sidenav-container" (backdropClick)="close('backdrop')">
   <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
     <app-sidebar-client></app-sidebar-client>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="flex flex-row justify-center w-full">
+    <div class="flex flex-row justify-center max-w-[95%] mx-auto">
       <div class="absolute left-2 top-2 z-50">
         <button mat-fab class='open-sidebar-button ' (click)="sidenav.open()">
           <mat-icon id='open_sidebar_icon'>menu</mat-icon>
         </button>
       </div>
-      <app-layouts-main class="bg-red-500 basis-3/5"></app-layouts-main>
-      <app-layouts-info class="bg-blue-500 basis-2/5"></app-layouts-info>
+      <app-layouts-main class="basis-3/5"></app-layouts-main>
+      <app-layouts-info class="basis-2/5 "></app-layouts-info>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<div class='content-container'></div>
 
 
 

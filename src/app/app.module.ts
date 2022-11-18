@@ -8,7 +8,9 @@ import { AngularMaterialModule } from './angular-material.module';
 
 import { SharedModule } from './shared/shared.module';
 import { LayoutsModule } from './layouts/layouts.module';
-import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
+import { MAT_RIPPLE_GLOBAL_OPTIONS, MatNativeDateModule, RippleGlobalOptions } from '@angular/material/core';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -26,9 +28,11 @@ const globalRippleConfig: RippleGlobalOptions = {
     BrowserAnimationsModule,
     AngularMaterialModule,
     SharedModule,
-    LayoutsModule
+    LayoutsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
+  providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }, MatDatepickerModule, MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

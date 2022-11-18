@@ -7,8 +7,9 @@ import { faker } from '@faker-js/faker';
   styleUrls: ['./card-hotel.component.scss']
 })
 export class CardHotelComponent implements OnInit {
-  text = faker.lorem.paragraphs(1);
   name = 	faker.company.companyName()
+  price = faker.commerce.price(20, 300, 0, '€');
+  url_image = faker.image.city()
 
   constructor() { }
 

@@ -4,10 +4,12 @@ import { SidebarClientComponent } from './sidebar-client/sidebar-client.componen
 import { AngularMaterialModule } from '../angular-material.module';
 import { LogoComponent } from './logo/logo.component';
 import { CardHotelComponent } from './card-hotel/card-hotel.component';
+import { SearchHotelComponent } from './search-hotel/search-hotel.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent],
-  exports: [SidebarClientComponent, LogoComponent, CardHotelComponent],
-  imports: [CommonModule, AngularMaterialModule]
+  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent, SearchHotelComponent],
+  exports: [SidebarClientComponent, LogoComponent, CardHotelComponent, SearchHotelComponent],
+  imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule,]
 })
 export class SharedModule {}

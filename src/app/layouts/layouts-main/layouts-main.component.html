@@ -1,6 +1,21 @@
-<div style='display: flex; flex-wrap: wrap; gap: 16px;'>
-  <app-card-hotel ></app-card-hotel>
-  <app-card-hotel></app-card-hotel>
-  <app-card-hotel></app-card-hotel>
-  <app-card-hotel></app-card-hotel>
+<div class='main-content flex flex-col items-center mt-10'>
+  <h1>Découvrir des hôtels qui vous ressemble</h1>
+  <div class='search-bar flex align-center'>
+    <app-search-hotel></app-search-hotel>
+  </div>
+
+  <div class='flex flex-col items-center'>
+    <div>
+      <h2>Sélectionner un hôtel</h2>
+    </div>
+    <div class="list_hotel flex flex-wrap gap-4 justify-center">
+      <app-card-hotel></app-card-hotel>
+      <app-card-hotel></app-card-hotel>
+      <app-card-hotel></app-card-hotel>
+      <app-card-hotel></app-card-hotel>
+      <app-card-hotel></app-card-hotel>
+      <app-card-hotel></app-card-hotel>
+    </div>
+  </div>
 </div>
+

@@ -1,7 +1,11 @@
 <mat-card class="card-hotel">
-  <img mat-card-image src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="{{url_image}}" alt="picsum">
   <mat-card-content>
     <strong>{{name}}</strong>
+    <p>
+      <span class='text-2xl'>{{price}}</span>/nuit
+    </p>
+
   </mat-card-content>
   <mat-card-actions>
     <button mat-button>Réserver</button>

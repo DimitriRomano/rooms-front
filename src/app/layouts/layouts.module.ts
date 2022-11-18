@@ -7,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AngularMaterialModule } from '../angular-material.module';
 import { LayoutsMainComponent } from './layouts-main/layouts-main.component';
 import { LayoutsInfoComponent } from './layouts-info/layouts-info.component';
+import { MainModule } from '../features/main/main.module';
 
 @NgModule({
   declarations: [LayoutsComponent, LayoutsMainComponent, LayoutsInfoComponent],
-  imports: [CommonModule, LayoutsRoutingModule, SharedModule, AngularMaterialModule]
+  imports: [CommonModule, LayoutsRoutingModule, SharedModule, AngularMaterialModule, MainModule]
 })
 export class LayoutsModule {}

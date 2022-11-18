@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ListHotelComponent } from './list-hotel/list-hotel.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListHotelComponent
+  ],
+  exports: [
+    ListHotelComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule, SharedModule
   ]
 })
-export class MainModule { }
+
+export class MainModule {}

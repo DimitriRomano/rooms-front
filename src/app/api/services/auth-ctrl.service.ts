@@ -14,13 +14,10 @@ import { AuthModel } from '../models/auth-model';
 import { Credentials } from '../models/credentials';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthCtrlService extends BaseService {
-  constructor(
-    config: ApiConfiguration,
-    http: HttpClient
-  ) {
+  constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
 
@@ -36,26 +33,28 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlLogin$Response(params?: {
-    context?: HttpContext
-    body?: Credentials
-  }
-): Observable<StrictHttpResponse<AuthModel>> {
-
+    context?: HttpContext;
+    body?: Credentials;
+  }): Observable<StrictHttpResponse<string>> {
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlLoginPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<AuthModel>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'blob',
+          accept: '*/*',
+          context: params?.context
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<string>;
+        })
+      );
   }
 
   /**
@@ -64,15 +63,8 @@ export class AuthCtrlService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authCtrlLogin(params?: {
-    context?: HttpContext
-    body?: Credentials
-  }
-): Observable<AuthModel> {
-
-    return this.authCtrlLogin$Response(params).pipe(
-      map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel)
-    );
+  authCtrlLogin(params?: { context?: HttpContext; body?: Credentials }): Observable<string> {
+    return this.authCtrlLogin$Response(params).pipe(map((r: StrictHttpResponse<string>) => r.body as string));
   }
 
   /**
@@ -87,26 +79,28 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlSignup$Response(params?: {
-    context?: HttpContext
-    body?: AuthCreation
-  }
-): Observable<StrictHttpResponse<string>> {
-
+    context?: HttpContext;
+    body?: AuthCreation;
+  }): Observable<StrictHttpResponse<AuthModel>> {
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlSignupPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
-    return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+          context: params?.context
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<AuthModel>;
+        })
+      );
   }
 
   /**
@@ -115,15 +109,8 @@ export class AuthCtrlService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authCtrlSignup(params?: {
-    context?: HttpContext
-    body?: AuthCreation
-  }
-): Observable<string> {
-
-    return this.authCtrlSignup$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
-    );
+  authCtrlSignup(params?: { context?: HttpContext; body?: AuthCreation }): Observable<AuthModel> {
+    return this.authCtrlSignup$Response(params).pipe(map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel));
   }
 
   /**
@@ -137,25 +124,25 @@ export class AuthCtrlService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  authCtrlAuthInfo$Response(params?: {
-    context?: HttpContext
-  }
-): Observable<StrictHttpResponse<AuthModel>> {
-
+  authCtrlAuthInfo$Response(params?: { context?: HttpContext }): Observable<StrictHttpResponse<AuthModel>> {
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlAuthInfoPath, 'post');
     if (params) {
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<AuthModel>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+          context: params?.context
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<AuthModel>;
+        })
+      );
   }
 
   /**
@@ -164,14 +151,8 @@ export class AuthCtrlService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  authCtrlAuthInfo(params?: {
-    context?: HttpContext
-  }
-): Observable<AuthModel> {
-
-    return this.authCtrlAuthInfo$Response(params).pipe(
-      map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel)
-    );
+  authCtrlAuthInfo(params?: { context?: HttpContext }): Observable<AuthModel> {
+    return this.authCtrlAuthInfo$Response(params).pipe(map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel));
   }
 
   /**
@@ -185,25 +166,25 @@ export class AuthCtrlService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  authCtrlLogout$Response(params?: {
-    context?: HttpContext
-  }
-): Observable<StrictHttpResponse<string>> {
-
+  authCtrlLogout$Response(params?: { context?: HttpContext }): Observable<StrictHttpResponse<AuthModel>> {
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlLogoutPath, 'post');
     if (params) {
     }
 
-    return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+          context: params?.context
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<AuthModel>;
+        })
+      );
   }
 
   /**
@@ -212,14 +193,8 @@ export class AuthCtrlService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  authCtrlLogout(params?: {
-    context?: HttpContext
-  }
-): Observable<string> {
-
-    return this.authCtrlLogout$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
-    );
+  authCtrlLogout(params?: { context?: HttpContext }): Observable<AuthModel> {
+    return this.authCtrlLogout$Response(params).pipe(map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel));
   }
 
   /**
@@ -234,28 +209,30 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlReset$Response(params?: {
-    context?: HttpContext
+    context?: HttpContext;
     body?: {
-'newPassword'?: string;
-}
-  }
-): Observable<StrictHttpResponse<string>> {
-
+      newPassword?: string;
+    };
+  }): Observable<StrictHttpResponse<AuthModel>> {
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlResetPath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
-    return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+          context: params?.context
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<AuthModel>;
+        })
+      );
   }
 
   /**
@@ -265,16 +242,11 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlReset(params?: {
-    context?: HttpContext
+    context?: HttpContext;
     body?: {
-'newPassword'?: string;
-}
+      newPassword?: string;
+    };
+  }): Observable<AuthModel> {
+    return this.authCtrlReset$Response(params).pipe(map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel));
   }
-): Observable<string> {
-
-    return this.authCtrlReset$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
-    );
-  }
-
 }

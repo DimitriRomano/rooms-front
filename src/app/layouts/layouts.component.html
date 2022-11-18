@@ -1,13 +1,21 @@
 <p>layout.html</p>
-<div class='main-layout'>
-  <mat-drawer-container class="sidenav-container">
-    <mat-drawer #drawer mode="side" opened='false'>
-      <app-sidebar-client></app-sidebar-client>
-    </mat-drawer>
-    <mat-drawer-content>
-      <button mat-fab class='open-sidebar-button' (click)="drawer.toggle(); openNav()"><mat-icon id='open_sidebar_icon'>menu</mat-icon></button>
-    </mat-drawer-content>
-  </mat-drawer-container>
-  <div class='content-container'></div>
-</div>
+<mat-sidenav-container class="sidenav-container" (backdropClick)="close('backdrop')">
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+    <app-sidebar-client></app-sidebar-client>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="flex flex-row justify-center w-full">
+      <div class="absolute left-2 top-2">
+        <button mat-fab class='open-sidebar-button ' (click)="sidenav.open()">
+          <mat-icon id='open_sidebar_icon'>menu</mat-icon>
+        </button>
+      </div>
+      <app-layouts-main class="bg-red-500 basis-3/5"></app-layouts-main>
+      <app-layouts-info class="bg-blue-500 basis-2/5"></app-layouts-info>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<div class='content-container'></div>
+
+
 

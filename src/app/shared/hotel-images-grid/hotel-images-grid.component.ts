@@ -8,8 +8,8 @@ import {faker} from "@faker-js/faker";
 })
 export class HotelImagesGridComponent implements OnInit {
 
-  image1 = faker.image.cats()
-  image2 = faker.image.nightlife()
+  image1 = faker.image.city()
+  image2 = faker.image.abstract()
   image3 = faker.image.abstract()
 
   constructor() { }

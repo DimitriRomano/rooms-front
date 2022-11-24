@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { faker } from '@faker-js/faker';
 
 
 @Component({
@@ -10,8 +11,12 @@ export class UserBadgeComponent implements OnInit {
 
   @Input() firstName!: string
   @Input() lastName!: string
+
+  profilImage = faker.image.avatar();
+
   //TODO Change icon on click
   constructor() { }
+
 
   ngOnInit(): void {
   }

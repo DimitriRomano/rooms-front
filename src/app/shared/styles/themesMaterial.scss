@@ -17,3 +17,12 @@
 .mat-drawer-side {
   border-right: none;
 }
+
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
+mat-card-actions.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}

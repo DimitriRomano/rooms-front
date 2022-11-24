@@ -10,11 +10,6 @@ import {FormGroup, FormControl} from '@angular/forms';
 export class SearchHotelComponent implements OnInit {
   constructor() { }
 
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
-
   ngOnInit(): void {
   }
 

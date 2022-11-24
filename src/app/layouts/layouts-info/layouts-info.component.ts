@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faker } from '@faker-js/faker';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +14,10 @@ export class LayoutsInfoComponent implements OnInit {
   lastName = faker.name.lastName();
   constructor() { }
 
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
   ngOnInit(): void {
   }
 

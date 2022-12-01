@@ -11,6 +11,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { MAT_RIPPLE_GLOBAL_OPTIONS, MatNativeDateModule, RippleGlobalOptions } from '@angular/material/core';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatDialogModule} from "@angular/material/dialog";
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -30,7 +31,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     SharedModule,
     LayoutsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
+
   ],
   providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }, MatDatepickerModule, MatNativeDateModule],
   bootstrap: [AppComponent]

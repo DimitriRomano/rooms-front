@@ -14,10 +14,7 @@ export class LayoutsInfoComponent implements OnInit {
   lastName = faker.name.lastName();
   constructor() { }
 
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
+
   ngOnInit(): void {
   }
 

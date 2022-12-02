@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { Component, Input, OnInit } from '@angular/core';
+import { HotelModel } from '../../api/models';
 
 @Component({
   selector: 'app-card-hotel',
@@ -7,14 +7,11 @@ import { faker } from '@faker-js/faker';
   styleUrls: ['./card-hotel.component.scss']
 })
 export class CardHotelComponent implements OnInit {
-  name = 	faker.company.companyName()
-  price = faker.commerce.price(20, 300, 0, '€');
-  url_image = faker.image.city()
+  @Input() hotel !: HotelModel;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
 

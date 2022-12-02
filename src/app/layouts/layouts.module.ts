@@ -9,9 +9,10 @@ import { LayoutsMainComponent } from './layouts-main/layouts-main.component';
 import { LayoutsInfoComponent } from './layouts-info/layouts-info.component';
 import { MainModule } from '../features/main/main.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InfoModule } from '../features/info/info.module';
 
 @NgModule({
   declarations: [LayoutsComponent, LayoutsMainComponent, LayoutsInfoComponent],
-  imports: [CommonModule, LayoutsRoutingModule, SharedModule, AngularMaterialModule, MainModule, ReactiveFormsModule]
+  imports: [CommonModule, LayoutsRoutingModule, SharedModule, AngularMaterialModule, MainModule, ReactiveFormsModule, InfoModule]
 })
 export class LayoutsModule {}

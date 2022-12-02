@@ -10,6 +10,8 @@ export { FeatureCategoryModel } from './models/feature-category-model';
 export { Credentials } from './models/credentials';
 export { AuthCreation } from './models/auth-creation';
 export { AuthUpdate } from './models/auth-update';
+export { BookingCreation } from './models/booking-creation';
+export { BookingUpdate } from './models/booking-update';
 export { FeatureCategoryCreation } from './models/feature-category-creation';
 export { FeatureCategoryUpdate } from './models/feature-category-update';
 export { FeatureCreation } from './models/feature-creation';

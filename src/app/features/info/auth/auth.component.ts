@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-auth',
@@ -8,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class AuthComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  isLogin = false;
 
-  storeToken = (token: string) => {
-    localStorage.setItem('token', token);
+  ngOnInit(): void {
+    this.isLogin = localStorage.getItem('token') ? true : false;
+  }
+
+  onLogout = () => {
+    localStorage.removeItem('token');
+    this.isLogin = false;
   };
 }

@@ -9,6 +9,7 @@ import { AngularMaterialModule } from '../../../angular-material.module';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, SignupComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule, AngularMaterialModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule, AngularMaterialModule],
+  exports: [AuthComponent]
 })
 export class AuthModule {}

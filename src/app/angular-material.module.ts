@@ -68,15 +68,9 @@ const materialModules = [
   MatTooltipModule
 ];
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-     ...materialModules
-  ],
-  exports: [
-    ...materialModules
-  ],
+  imports: [CommonModule, ...materialModules],
+  exports: [...materialModules]
 })
-export class AngularMaterialModule { }
+export class AngularMaterialModule {}

@@ -14,6 +14,9 @@ export class SignupComponent implements OnInit {
 
   signupForm = this.authService.signupForm;
 
+  hide = true;
+  hideConfirm = true;
+
   onSubmit = () => {
     try {
       if (!this.signupForm.valid) {
@@ -38,7 +41,6 @@ export class SignupComponent implements OnInit {
           }
         })
         .subscribe((res) => {
-          console.log(res);
           if (res.token) {
             this.authService.storeToken(res.token);
           } else {

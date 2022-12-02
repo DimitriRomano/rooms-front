@@ -5,6 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 //Material theme
 $rooms-front-primary: mat.define-palette($p-primary, 900);
 $rooms-front-accent: mat.define-palette($p-accent, 700);
@@ -35,3 +36,38 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+
+
+.swiper-container {
+  position: relative;
+  width: calc(100% - 50px);
+  min-width: 300px;
+  height: calc(100% - 50px);
+  min-height: 300px;
+  margin: 50px auto;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+
+}
+
+.swiper-slide {
+  color: #000;
+  text-align: center;
+  line-height: 300px;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+
+}

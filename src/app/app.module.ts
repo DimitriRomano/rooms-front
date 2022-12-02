@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api.interceptor';
 
@@ -39,7 +41,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     SharedModule,
     LayoutsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule
   ],
   providers: [
     ApiInterceptor,

@@ -1,17 +1,20 @@
 /* tslint:disable */
 /* eslint-disable */
-import { AdminInformationModel } from './admin-information-model';
-import { HotelAdminInformationModel } from './hotel-admin-information-model';
-import { UserInformationModel } from './user-information-model';
+import { BookingModel } from './booking-model';
+import { FavoriteModel } from './favorite-model';
+import { HotelModel } from './hotel-model';
 export interface AuthModel {
-  AdminInformation: null | AdminInformationModel;
-  HotelAdminInformation: null | HotelAdminInformationModel;
-  UserInformation: null | UserInformationModel;
+  Favorite: Array<FavoriteModel>;
+  bookings: Array<BookingModel>;
   createdAt: string;
   disabled: boolean;
   email: string;
   emailVerifiedAt: null | string;
+  firstName: string;
+  hotels: Array<HotelModel>;
   id: number;
+  image: null | string;
+  lastName: string;
   password: string;
   role: 'ADMIN' | 'HOTEL' | 'USER';
   token: null | string;

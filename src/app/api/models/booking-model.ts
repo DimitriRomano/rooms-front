@@ -1,8 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
+import { AuthModel } from './auth-model';
 import { RoomModel } from './room-model';
-import { UserInformationModel } from './user-information-model';
 export interface BookingModel {
+  Auth: null | AuthModel;
+  authId: null | number;
   checkIn: string;
   checkOut: string;
   createdAt: string;
@@ -12,6 +14,4 @@ export interface BookingModel {
   roomId: null | number;
   status: 'PENDING' | 'CONFIRMED' | 'REFUSED' | 'CANCELED' | 'ENDED';
   updatedAt: string;
-  user: null | UserInformationModel;
-  userId: null | number;
 }

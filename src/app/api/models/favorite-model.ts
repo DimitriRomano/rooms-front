@@ -1,13 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
+import { AuthModel } from './auth-model';
 import { HotelModel } from './hotel-model';
-import { UserInformationModel } from './user-information-model';
 export interface FavoriteModel {
+  Auth: null | AuthModel;
+  authId: null | number;
   createdAt: string;
   hotel: HotelModel;
   hotelId: number;
   id: number;
   updatedAt: string;
-  user: UserInformationModel;
-  userId: number;
 }

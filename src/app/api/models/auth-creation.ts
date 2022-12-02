@@ -8,9 +8,14 @@ export interface AuthCreation {
   email: string;
 
   /**
-   * User Hotel
+   * User first name
    */
-  hotels?: Array<any>;
+  firstName: string;
+
+  /**
+   * User last name
+   */
+  lastName: string;
 
   /**
    * User password

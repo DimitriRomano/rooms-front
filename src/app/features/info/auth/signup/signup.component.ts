@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthCtrlService } from '../../../../api/services/auth-ctrl.service';
+import { AuthService } from '../auth.service';
+import { AuthCtrlService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-signup',
@@ -7,25 +8,45 @@ import { AuthCtrlService } from '../../../../api/services/auth-ctrl.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: AuthCtrlService) {}
+  constructor(private authService: AuthService, private authCtrlService: AuthCtrlService) {}
 
   ngOnInit(): void {}
 
-  @Input() storeToken!: (token: string) => void;
+  signupForm = this.authService.signupForm;
 
-  username = '';
-  password = '';
-  passwordConfirm = '';
-  email = '';
-  firstName = '';
-  lastName = '';
+  onSubmit = () => {
+    try {
+      if (!this.signupForm.valid) {
+        console.log(this.signupForm.value);
+        return;
+      }
+      const { email, password, firstName, lastName } = this.signupForm.value as {
+        email: string;
+        password: string;
+        firstName: string;
+        lastName: string;
+      };
 
-  signup = () => {
-    this.authService
-      .authCtrlSignup({ body: { email: this.email, password: this.password, role: 'USER' } })
-      .subscribe((res) => {
-        this.storeToken(res.token!);
-      });
-    this.storeToken('token');
+      this.authCtrlService
+        .authCtrlSignup({
+          body: {
+            email,
+            password,
+            firstName,
+            lastName,
+            role: 'USER'
+          }
+        })
+        .subscribe((res) => {
+          console.log(res);
+          if (res.token) {
+            this.authService.storeToken(res.token);
+          } else {
+            throw new Error('No token returned');
+          }
+        });
+    } catch (error) {
+      throw new Error('An error occurred while signing up: ' + error);
+    }
   };
 }

@@ -10,11 +10,12 @@ import { UserBadgeComponent } from './user-badge/user-badge.component';
 import { HotelImagesGridComponent } from './hotel-images-grid/hotel-images-grid.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {RouterLinkWithHref} from "@angular/router";
 
 @NgModule({
   declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, HotelImagesGridComponent, SearchHotelComponent, EditHotelComponent],
     exports: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, SearchHotelComponent,  HotelImagesGridComponent],
-  imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, MatDialogModule]
+    imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, MatDialogModule, RouterLinkWithHref]
 
 })
 export class SharedModule {}

@@ -172,7 +172,7 @@ let hotel = [
 })
 export class AdminPanelComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'city', 'country', 'icons'];
+  displayedColumns: string[] = ['position', 'name', 'city', 'country', 'actions'];
 
   dataSource!: MatTableDataSource<any>
   constructor(public dialog: MatDialog) { }
@@ -201,4 +201,16 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
+  deleteHotel(hotelFromRow: any): void {
+    let foundHotel = hotel.findIndex((element: any) => element.id === hotelFromRow.id);
+    hotel.splice(foundHotel, 1)
+    this.dataSource.data = hotel;
+
+  }
+
+  applyFilter($event: KeyboardEvent) {
+    const filterValue = ($event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  }
 }

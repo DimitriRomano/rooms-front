@@ -1,3 +1,46 @@
 table {
   width: 100%;
+  overflow: auto;
 }
+
+//Make name column wider and bolder
+.mat-column-name {
+  font-weight: bold;
+  width: 20%;
+  padding-left: 16px;
+
+}
+
+.mat-column-position{
+  width: 2rem;
+  padding-right: 24px;
+  text-align: center;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-actions{
+  width: 2rem;
+  padding-left: 24px;
+  text-align: right;
+  border-left: 1px solid currentColor;
+
+}
+
+.mat-icon {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-row {
+  &:hover {
+    background-color: lightgrey;
+  }
+}
+
+

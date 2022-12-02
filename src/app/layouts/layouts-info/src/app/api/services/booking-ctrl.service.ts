@@ -9,14 +9,15 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { HotelCreation } from '../models/hotel-creation';
-import { HotelModel } from '../models/hotel-model';
-import { HotelUpdate } from '../models/hotel-update';
+import { BookingCreation } from '../models/booking-creation';
+import { BookingFind } from '../models/booking-find';
+import { BookingModel } from '../models/booking-model';
+import { BookingUpdate } from '../models/booking-update';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HotelCtrlService extends BaseService {
+export class BookingCtrlService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -25,24 +26,23 @@ export class HotelCtrlService extends BaseService {
   }
 
   /**
-   * Path part for operation hotelCtrlGetAll
+   * Path part for operation bookingCtrlCreate
    */
-  static readonly HotelCtrlGetAllPath = '/rest/hotels';
+  static readonly BookingCtrlCreatePath = '/rest/bookings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlGetAll()` instead.
+   * To access only the response body, use `bookingCtrlCreate()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlGetAll$Response(params?: {
+  bookingCtrlCreate$Response(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: BookingCreation
   }
-): Observable<StrictHttpResponse<Array<HotelModel>>> {
+): Observable<StrictHttpResponse<BookingModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlGetAllPath, 'patch');
+    const rb = new RequestBuilder(this.rootUrl, BookingCtrlService.BookingCtrlCreatePath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -54,47 +54,46 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<HotelModel>>;
+        return r as StrictHttpResponse<BookingModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlGetAll$Response()` instead.
+   * To access the full response (for headers, for example), `bookingCtrlCreate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlGetAll(params?: {
+  bookingCtrlCreate(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: BookingCreation
   }
-): Observable<Array<HotelModel>> {
+): Observable<BookingModel> {
 
-    return this.hotelCtrlGetAll$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<HotelModel>>) => r.body as Array<HotelModel>)
+    return this.bookingCtrlCreate$Response(params).pipe(
+      map((r: StrictHttpResponse<BookingModel>) => r.body as BookingModel)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlCreate
+   * Path part for operation bookingCtrlGetAll
    */
-  static readonly HotelCtrlCreatePath = '/rest/hotels';
+  static readonly BookingCtrlGetAllPath = '/rest/bookings';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlCreate()` instead.
+   * To access only the response body, use `bookingCtrlGetAll()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlCreate$Response(params?: {
+  bookingCtrlGetAll$Response(params?: {
     context?: HttpContext
-    body?: HotelCreation
+    body?: BookingFind
   }
-): Observable<StrictHttpResponse<HotelModel>> {
+): Observable<StrictHttpResponse<Array<BookingModel>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlCreatePath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, BookingCtrlService.BookingCtrlGetAllPath, 'patch');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -106,46 +105,46 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<HotelModel>;
+        return r as StrictHttpResponse<Array<BookingModel>>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlCreate$Response()` instead.
+   * To access the full response (for headers, for example), `bookingCtrlGetAll$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlCreate(params?: {
+  bookingCtrlGetAll(params?: {
     context?: HttpContext
-    body?: HotelCreation
+    body?: BookingFind
   }
-): Observable<HotelModel> {
+): Observable<Array<BookingModel>> {
 
-    return this.hotelCtrlCreate$Response(params).pipe(
-      map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    return this.bookingCtrlGetAll$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<BookingModel>>) => r.body as Array<BookingModel>)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlGetOne
+   * Path part for operation bookingCtrlGetOne
    */
-  static readonly HotelCtrlGetOnePath = '/rest/hotels/{id}';
+  static readonly BookingCtrlGetOnePath = '/rest/bookings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlGetOne()` instead.
+   * To access only the response body, use `bookingCtrlGetOne()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlGetOne$Response(params: {
+  bookingCtrlGetOne$Response(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<HotelModel>> {
+): Observable<StrictHttpResponse<BookingModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlGetOnePath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, BookingCtrlService.BookingCtrlGetOnePath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -157,98 +156,98 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<HotelModel>;
+        return r as StrictHttpResponse<BookingModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlGetOne$Response()` instead.
+   * To access the full response (for headers, for example), `bookingCtrlGetOne$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlGetOne(params: {
+  bookingCtrlGetOne(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<HotelModel> {
+): Observable<BookingModel> {
 
-    return this.hotelCtrlGetOne$Response(params).pipe(
-      map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    return this.bookingCtrlGetOne$Response(params).pipe(
+      map((r: StrictHttpResponse<BookingModel>) => r.body as BookingModel)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlDelete
+   * Path part for operation bookingCtrlDelete
    */
-  static readonly HotelCtrlDeletePath = '/rest/hotels/{id}';
+  static readonly BookingCtrlDeletePath = '/rest/bookings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlDelete()` instead.
+   * To access only the response body, use `bookingCtrlDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlDelete$Response(params: {
+  bookingCtrlDelete$Response(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<BookingModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, BookingCtrlService.BookingCtrlDeletePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<BookingModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlDelete$Response()` instead.
+   * To access the full response (for headers, for example), `bookingCtrlDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlDelete(params: {
+  bookingCtrlDelete(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<string> {
+): Observable<BookingModel> {
 
-    return this.hotelCtrlDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+    return this.bookingCtrlDelete$Response(params).pipe(
+      map((r: StrictHttpResponse<BookingModel>) => r.body as BookingModel)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlUpdate
+   * Path part for operation bookingCtrlUpdate
    */
-  static readonly HotelCtrlUpdatePath = '/rest/hotels/{id}';
+  static readonly BookingCtrlUpdatePath = '/rest/bookings/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlUpdate()` instead.
+   * To access only the response body, use `bookingCtrlUpdate()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlUpdate$Response(params: {
+  bookingCtrlUpdate$Response(params: {
     id: number;
     context?: HttpContext
-    body?: HotelUpdate
+    body?: BookingUpdate
   }
-): Observable<StrictHttpResponse<HotelModel>> {
+): Observable<StrictHttpResponse<BookingModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlUpdatePath, 'patch');
+    const rb = new RequestBuilder(this.rootUrl, BookingCtrlService.BookingCtrlUpdatePath, 'patch');
     if (params) {
       rb.path('id', params.id, {});
       rb.body(params.body, 'application/json');
@@ -261,26 +260,26 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<HotelModel>;
+        return r as StrictHttpResponse<BookingModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlUpdate$Response()` instead.
+   * To access the full response (for headers, for example), `bookingCtrlUpdate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlUpdate(params: {
+  bookingCtrlUpdate(params: {
     id: number;
     context?: HttpContext
-    body?: HotelUpdate
+    body?: BookingUpdate
   }
-): Observable<HotelModel> {
+): Observable<BookingModel> {
 
-    return this.hotelCtrlUpdate$Response(params).pipe(
-      map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    return this.bookingCtrlUpdate$Response(params).pipe(
+      map((r: StrictHttpResponse<BookingModel>) => r.body as BookingModel)
     );
   }
 

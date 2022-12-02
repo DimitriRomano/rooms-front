@@ -9,14 +9,15 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { HotelCreation } from '../models/hotel-creation';
-import { HotelModel } from '../models/hotel-model';
-import { HotelUpdate } from '../models/hotel-update';
+import { FeatureCreation } from '../models/feature-creation';
+import { FeatureFind } from '../models/feature-find';
+import { FeatureModel } from '../models/feature-model';
+import { FeatureUpdate } from '../models/feature-update';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HotelCtrlService extends BaseService {
+export class FeatureCtrlService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -25,24 +26,23 @@ export class HotelCtrlService extends BaseService {
   }
 
   /**
-   * Path part for operation hotelCtrlGetAll
+   * Path part for operation featureCtrlCreate
    */
-  static readonly HotelCtrlGetAllPath = '/rest/hotels';
+  static readonly FeatureCtrlCreatePath = '/rest/features';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlGetAll()` instead.
+   * To access only the response body, use `featureCtrlCreate()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlGetAll$Response(params?: {
+  featureCtrlCreate$Response(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: FeatureCreation
   }
-): Observable<StrictHttpResponse<Array<HotelModel>>> {
+): Observable<StrictHttpResponse<FeatureModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlGetAllPath, 'patch');
+    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlCreatePath, 'post');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -54,47 +54,46 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<HotelModel>>;
+        return r as StrictHttpResponse<FeatureModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlGetAll$Response()` instead.
+   * To access the full response (for headers, for example), `featureCtrlCreate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlGetAll(params?: {
+  featureCtrlCreate(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: FeatureCreation
   }
-): Observable<Array<HotelModel>> {
+): Observable<FeatureModel> {
 
-    return this.hotelCtrlGetAll$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<HotelModel>>) => r.body as Array<HotelModel>)
+    return this.featureCtrlCreate$Response(params).pipe(
+      map((r: StrictHttpResponse<FeatureModel>) => r.body as FeatureModel)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlCreate
+   * Path part for operation featureCtrlGetAll
    */
-  static readonly HotelCtrlCreatePath = '/rest/hotels';
+  static readonly FeatureCtrlGetAllPath = '/rest/features';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlCreate()` instead.
+   * To access only the response body, use `featureCtrlGetAll()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlCreate$Response(params?: {
+  featureCtrlGetAll$Response(params?: {
     context?: HttpContext
-    body?: HotelCreation
+    body?: FeatureFind
   }
-): Observable<StrictHttpResponse<HotelModel>> {
+): Observable<StrictHttpResponse<Array<FeatureModel>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlCreatePath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlGetAllPath, 'patch');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -106,46 +105,46 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<HotelModel>;
+        return r as StrictHttpResponse<Array<FeatureModel>>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlCreate$Response()` instead.
+   * To access the full response (for headers, for example), `featureCtrlGetAll$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlCreate(params?: {
+  featureCtrlGetAll(params?: {
     context?: HttpContext
-    body?: HotelCreation
+    body?: FeatureFind
   }
-): Observable<HotelModel> {
+): Observable<Array<FeatureModel>> {
 
-    return this.hotelCtrlCreate$Response(params).pipe(
-      map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    return this.featureCtrlGetAll$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<FeatureModel>>) => r.body as Array<FeatureModel>)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlGetOne
+   * Path part for operation featureCtrlGetOne
    */
-  static readonly HotelCtrlGetOnePath = '/rest/hotels/{id}';
+  static readonly FeatureCtrlGetOnePath = '/rest/features/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlGetOne()` instead.
+   * To access only the response body, use `featureCtrlGetOne()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlGetOne$Response(params: {
+  featureCtrlGetOne$Response(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<HotelModel>> {
+): Observable<StrictHttpResponse<FeatureModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlGetOnePath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlGetOnePath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
@@ -157,98 +156,98 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<HotelModel>;
+        return r as StrictHttpResponse<FeatureModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlGetOne$Response()` instead.
+   * To access the full response (for headers, for example), `featureCtrlGetOne$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlGetOne(params: {
+  featureCtrlGetOne(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<HotelModel> {
+): Observable<FeatureModel> {
 
-    return this.hotelCtrlGetOne$Response(params).pipe(
-      map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    return this.featureCtrlGetOne$Response(params).pipe(
+      map((r: StrictHttpResponse<FeatureModel>) => r.body as FeatureModel)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlDelete
+   * Path part for operation featureCtrlDelete
    */
-  static readonly HotelCtrlDeletePath = '/rest/hotels/{id}';
+  static readonly FeatureCtrlDeletePath = '/rest/features/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlDelete()` instead.
+   * To access only the response body, use `featureCtrlDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlDelete$Response(params: {
+  featureCtrlDelete$Response(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<FeatureModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlDeletePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<FeatureModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlDelete$Response()` instead.
+   * To access the full response (for headers, for example), `featureCtrlDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  hotelCtrlDelete(params: {
+  featureCtrlDelete(params: {
     id: number;
     context?: HttpContext
   }
-): Observable<string> {
+): Observable<FeatureModel> {
 
-    return this.hotelCtrlDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+    return this.featureCtrlDelete$Response(params).pipe(
+      map((r: StrictHttpResponse<FeatureModel>) => r.body as FeatureModel)
     );
   }
 
   /**
-   * Path part for operation hotelCtrlUpdate
+   * Path part for operation featureCtrlUpdate
    */
-  static readonly HotelCtrlUpdatePath = '/rest/hotels/{id}';
+  static readonly FeatureCtrlUpdatePath = '/rest/features/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlUpdate()` instead.
+   * To access only the response body, use `featureCtrlUpdate()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlUpdate$Response(params: {
+  featureCtrlUpdate$Response(params: {
     id: number;
     context?: HttpContext
-    body?: HotelUpdate
+    body?: FeatureUpdate
   }
-): Observable<StrictHttpResponse<HotelModel>> {
+): Observable<StrictHttpResponse<FeatureModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlUpdatePath, 'patch');
+    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlUpdatePath, 'patch');
     if (params) {
       rb.path('id', params.id, {});
       rb.body(params.body, 'application/json');
@@ -261,26 +260,26 @@ export class HotelCtrlService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<HotelModel>;
+        return r as StrictHttpResponse<FeatureModel>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlUpdate$Response()` instead.
+   * To access the full response (for headers, for example), `featureCtrlUpdate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  hotelCtrlUpdate(params: {
+  featureCtrlUpdate(params: {
     id: number;
     context?: HttpContext
-    body?: HotelUpdate
+    body?: FeatureUpdate
   }
-): Observable<HotelModel> {
+): Observable<FeatureModel> {
 
-    return this.hotelCtrlUpdate$Response(params).pipe(
-      map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    return this.featureCtrlUpdate$Response(params).pipe(
+      map((r: StrictHttpResponse<FeatureModel>) => r.body as FeatureModel)
     );
   }
 

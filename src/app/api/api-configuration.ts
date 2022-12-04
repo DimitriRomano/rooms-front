@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
  * Global configuration
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ApiConfiguration {
-  rootUrl: string = '';
+  rootUrl: string = 'http://localhost:8083';
 }
 
 /**

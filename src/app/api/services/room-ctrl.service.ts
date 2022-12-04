@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { RoomCreation } from '../models/room-creation';
+import { RoomFind } from '../models/room-find';
 import { RoomModel } from '../models/room-model';
 import { RoomUpdate } from '../models/room-update';
 
@@ -22,59 +23,6 @@ export class RoomCtrlService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
-  }
-
-  /**
-   * Path part for operation roomCtrlGetAll
-   */
-  static readonly RoomCtrlGetAllPath = '/rest/rooms';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `roomCtrlGetAll()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  roomCtrlGetAll$Response(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<StrictHttpResponse<Array<RoomModel>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, RoomCtrlService.RoomCtrlGetAllPath, 'get');
-    if (params) {
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<RoomModel>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `roomCtrlGetAll$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  roomCtrlGetAll(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<Array<RoomModel>> {
-
-    return this.roomCtrlGetAll$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<RoomModel>>) => r.body as Array<RoomModel>)
-    );
   }
 
   /**
@@ -125,6 +73,57 @@ export class RoomCtrlService extends BaseService {
 
     return this.roomCtrlCreate$Response(params).pipe(
       map((r: StrictHttpResponse<RoomModel>) => r.body as RoomModel)
+    );
+  }
+
+  /**
+   * Path part for operation roomCtrlGetAll
+   */
+  static readonly RoomCtrlGetAllPath = '/rest/rooms';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `roomCtrlGetAll()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  roomCtrlGetAll$Response(params?: {
+    context?: HttpContext
+    body?: RoomFind
+  }
+): Observable<StrictHttpResponse<Array<RoomModel>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, RoomCtrlService.RoomCtrlGetAllPath, 'patch');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<RoomModel>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `roomCtrlGetAll$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  roomCtrlGetAll(params?: {
+    context?: HttpContext
+    body?: RoomFind
+  }
+): Observable<Array<RoomModel>> {
+
+    return this.roomCtrlGetAll$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<RoomModel>>) => r.body as Array<RoomModel>)
     );
   }
 

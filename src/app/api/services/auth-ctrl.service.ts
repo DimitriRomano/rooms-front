@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { AuthCreation } from '../models/auth-creation';
+import { AuthFind } from '../models/auth-find';
 import { AuthModel } from '../models/auth-model';
 import { AuthUpdate } from '../models/auth-update';
 import { Credentials } from '../models/credentials';
@@ -91,7 +92,7 @@ export class AuthCtrlService extends BaseService {
     context?: HttpContext
     body?: AuthCreation
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<AuthModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlSignupPath, 'post');
     if (params) {
@@ -99,13 +100,13 @@ export class AuthCtrlService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<AuthModel>;
       })
     );
   }
@@ -120,10 +121,10 @@ export class AuthCtrlService extends BaseService {
     context?: HttpContext
     body?: AuthCreation
   }
-): Observable<string> {
+): Observable<AuthModel> {
 
     return this.authCtrlSignup$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel)
     );
   }
 
@@ -141,20 +142,20 @@ export class AuthCtrlService extends BaseService {
   authCtrlLogout$Response(params?: {
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlLogoutPath, 'post');
     if (params) {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'text',
       accept: '*/*',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
       })
     );
   }
@@ -168,10 +169,10 @@ export class AuthCtrlService extends BaseService {
   authCtrlLogout(params?: {
     context?: HttpContext
   }
-): Observable<string> {
+): Observable<void> {
 
     return this.authCtrlLogout$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
@@ -342,12 +343,11 @@ export class AuthCtrlService extends BaseService {
    */
   authCtrlGetAll$Response(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: AuthFind
   }
 ): Observable<StrictHttpResponse<Array<AuthModel>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlGetAllPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlGetAllPath, 'patch');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -372,8 +372,7 @@ export class AuthCtrlService extends BaseService {
    */
   authCtrlGetAll(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: AuthFind
   }
 ): Observable<Array<AuthModel>> {
 
@@ -510,11 +509,9 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlUpdate$Response(params: {
-    id: string;
+    id: number;
     context?: HttpContext
-    body?: {
-'id'?: number;
-}
+    body?: AuthUpdate
   }
 ): Observable<StrictHttpResponse<AuthModel>> {
 
@@ -543,11 +540,9 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlUpdate(params: {
-    id: string;
+    id: number;
     context?: HttpContext
-    body?: {
-'id'?: number;
-}
+    body?: AuthUpdate
   }
 ): Observable<AuthModel> {
 

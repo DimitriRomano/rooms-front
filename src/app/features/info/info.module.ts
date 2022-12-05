@@ -6,17 +6,8 @@ import { AngularMaterialModule } from '../../angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    HotelInfoComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AngularMaterialModule,
-    ReactiveFormsModule
-  ],
-  exports: [
-    HotelInfoComponent
-  ]
+  declarations: [HotelInfoComponent],
+  imports: [CommonModule, SharedModule, AngularMaterialModule, ReactiveFormsModule],
+  exports: [HotelInfoComponent]
 })
-export class InfoModule { }
+export class InfoModule {}

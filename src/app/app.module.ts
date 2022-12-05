@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api.interceptor';
 import { FeaturesModule } from './features/features.module';
+import { ReservationModule } from './features/reservation/reservation.module';
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,

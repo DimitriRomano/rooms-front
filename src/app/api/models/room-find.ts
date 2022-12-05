@@ -1,3 +1,4 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface RoomFind {}
+export interface RoomFind {
+}

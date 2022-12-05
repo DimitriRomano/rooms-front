@@ -12,10 +12,13 @@ import { map, filter } from 'rxjs/operators';
 import { FeatureHotelModel } from '../models/feature-hotel-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FeatureHotelCtrlService extends BaseService {
-  constructor(config: ApiConfiguration, http: HttpClient) {
+  constructor(
+    config: ApiConfiguration,
+    http: HttpClient
+  ) {
     super(config, http);
   }
 
@@ -31,28 +34,27 @@ export class FeatureHotelCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   featureHotelCtrlGetAll$Response(params?: {
-    context?: HttpContext;
-    body?: {};
-  }): Observable<StrictHttpResponse<Array<FeatureHotelModel>>> {
+    context?: HttpContext
+    body?: {
+}
+  }
+): Observable<StrictHttpResponse<Array<FeatureHotelModel>>> {
+
     const rb = new RequestBuilder(this.rootUrl, FeatureHotelCtrlService.FeatureHotelCtrlGetAllPath, 'patch');
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-          context: params?.context
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Array<FeatureHotelModel>>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<FeatureHotelModel>>;
+      })
+    );
   }
 
   /**
@@ -61,9 +63,16 @@ export class FeatureHotelCtrlService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  featureHotelCtrlGetAll(params?: { context?: HttpContext; body?: {} }): Observable<Array<FeatureHotelModel>> {
+  featureHotelCtrlGetAll(params?: {
+    context?: HttpContext
+    body?: {
+}
+  }
+): Observable<Array<FeatureHotelModel>> {
+
     return this.featureHotelCtrlGetAll$Response(params).pipe(
       map((r: StrictHttpResponse<Array<FeatureHotelModel>>) => r.body as Array<FeatureHotelModel>)
     );
   }
+
 }

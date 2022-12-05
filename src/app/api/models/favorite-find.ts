@@ -1,3 +1,4 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface FavoriteFind {}
+export interface FavoriteFind {
+}

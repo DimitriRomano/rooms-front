@@ -11,9 +11,11 @@ import { HotelImagesGridComponent } from './hotel-images-grid/hotel-images-grid.
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {RouterLinkWithHref} from "@angular/router";
+import { AddHotelComponent } from './add-hotel/add-hotel.component';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 @NgModule({
-  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, HotelImagesGridComponent, SearchHotelComponent, EditHotelComponent],
+  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, HotelImagesGridComponent, SearchHotelComponent, EditHotelComponent, AddHotelComponent, AddRoomComponent],
     exports: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, SearchHotelComponent,  HotelImagesGridComponent],
     imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, MatDialogModule, RouterLinkWithHref]
 

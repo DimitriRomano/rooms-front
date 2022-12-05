@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { FeatureCategoryCreation } from '../models/feature-category-creation';
+import { FeatureCategoryFind } from '../models/feature-category-find';
 import { FeatureCategoryModel } from '../models/feature-category-model';
 import { FeatureCategoryUpdate } from '../models/feature-category-update';
 
@@ -22,59 +23,6 @@ export class FeatureCategoryCtrlService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
-  }
-
-  /**
-   * Path part for operation featureCategoryCtrlGetAll
-   */
-  static readonly FeatureCategoryCtrlGetAllPath = '/rest/feature-categories';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `featureCategoryCtrlGetAll()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  featureCategoryCtrlGetAll$Response(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<StrictHttpResponse<Array<FeatureCategoryModel>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, FeatureCategoryCtrlService.FeatureCategoryCtrlGetAllPath, 'get');
-    if (params) {
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<FeatureCategoryModel>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `featureCategoryCtrlGetAll$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  featureCategoryCtrlGetAll(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<Array<FeatureCategoryModel>> {
-
-    return this.featureCategoryCtrlGetAll$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<FeatureCategoryModel>>) => r.body as Array<FeatureCategoryModel>)
-    );
   }
 
   /**
@@ -125,6 +73,57 @@ export class FeatureCategoryCtrlService extends BaseService {
 
     return this.featureCategoryCtrlCreate$Response(params).pipe(
       map((r: StrictHttpResponse<FeatureCategoryModel>) => r.body as FeatureCategoryModel)
+    );
+  }
+
+  /**
+   * Path part for operation featureCategoryCtrlGetAll
+   */
+  static readonly FeatureCategoryCtrlGetAllPath = '/rest/feature-categories';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `featureCategoryCtrlGetAll()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  featureCategoryCtrlGetAll$Response(params?: {
+    context?: HttpContext
+    body?: FeatureCategoryFind
+  }
+): Observable<StrictHttpResponse<Array<FeatureCategoryModel>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, FeatureCategoryCtrlService.FeatureCategoryCtrlGetAllPath, 'patch');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<FeatureCategoryModel>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `featureCategoryCtrlGetAll$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  featureCategoryCtrlGetAll(params?: {
+    context?: HttpContext
+    body?: FeatureCategoryFind
+  }
+): Observable<Array<FeatureCategoryModel>> {
+
+    return this.featureCategoryCtrlGetAll$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<FeatureCategoryModel>>) => r.body as Array<FeatureCategoryModel>)
     );
   }
 

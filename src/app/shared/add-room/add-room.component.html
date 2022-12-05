@@ -1,0 +1,45 @@
+<form [formGroup]="roomForm" (ngSubmit)="onClickSubmit()">
+
+  <div class="flex flex-wrap space-x-3 justify-center">
+
+  <mat-form-field appearance="outline">
+      <input matInput placeholder="Room Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+  <mat-label>Description : </mat-label>
+  <textarea
+  matInput
+  cdkTextareaAutosize
+  #autosize=cdkTextareaAutosize
+  cdkAutosizeMinRows="5"
+  formControlName="description"
+  placeholder="Description"></textarea>
+</mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <input matInput type="number" placeholder="Room Capacity" formControlName="capacity">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <input matInput type="number" placeholder="Room nbBed" formControlName="nbBed">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <input matInput type="number" placeholder="Room Price" formControlName="price">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <input matInput placeholder="Room Image" formControlName="images">
+  </mat-form-field>
+
+<!--    <mat-form-field appearance="outline">
+      <input matInput placeholder="Room featuresIds" formControlName="featuresIds">
+  </mat-form-field>-->
+
+  </div>
+    <mat-dialog-actions>
+    <button  mat-raised-button type="submit" [disabled]="!roomForm.valid">Submit</button>
+  </mat-dialog-actions>
+
+</form>

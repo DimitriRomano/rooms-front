@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { HotelCreation } from '../models/hotel-creation';
+import { HotelFind } from '../models/hotel-find';
 import { HotelModel } from '../models/hotel-model';
 import { HotelUpdate } from '../models/hotel-update';
 
@@ -22,59 +23,6 @@ export class HotelCtrlService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
-  }
-
-  /**
-   * Path part for operation hotelCtrlGetAll
-   */
-  static readonly HotelCtrlGetAllPath = '/rest/hotels';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `hotelCtrlGetAll()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  hotelCtrlGetAll$Response(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<StrictHttpResponse<Array<HotelModel>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlGetAllPath, 'get');
-    if (params) {
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<HotelModel>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `hotelCtrlGetAll$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  hotelCtrlGetAll(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<Array<HotelModel>> {
-
-    return this.hotelCtrlGetAll$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<HotelModel>>) => r.body as Array<HotelModel>)
-    );
   }
 
   /**
@@ -125,6 +73,57 @@ export class HotelCtrlService extends BaseService {
 
     return this.hotelCtrlCreate$Response(params).pipe(
       map((r: StrictHttpResponse<HotelModel>) => r.body as HotelModel)
+    );
+  }
+
+  /**
+   * Path part for operation hotelCtrlGetAll
+   */
+  static readonly HotelCtrlGetAllPath = '/rest/hotels';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `hotelCtrlGetAll()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  hotelCtrlGetAll$Response(params?: {
+    context?: HttpContext
+    body?: HotelFind
+  }
+): Observable<StrictHttpResponse<Array<HotelModel>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, HotelCtrlService.HotelCtrlGetAllPath, 'patch');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<HotelModel>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `hotelCtrlGetAll$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  hotelCtrlGetAll(params?: {
+    context?: HttpContext
+    body?: HotelFind
+  }
+): Observable<Array<HotelModel>> {
+
+    return this.hotelCtrlGetAll$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<HotelModel>>) => r.body as Array<HotelModel>)
     );
   }
 

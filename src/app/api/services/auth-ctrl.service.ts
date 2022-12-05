@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { AuthCreation } from '../models/auth-creation';
+import { AuthFind } from '../models/auth-find';
 import { AuthModel } from '../models/auth-model';
 import { AuthUpdate } from '../models/auth-update';
 import { Credentials } from '../models/credentials';
@@ -342,12 +343,11 @@ export class AuthCtrlService extends BaseService {
    */
   authCtrlGetAll$Response(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: AuthFind
   }
 ): Observable<StrictHttpResponse<Array<AuthModel>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlGetAllPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlGetAllPath, 'patch');
     if (params) {
       rb.body(params.body, 'application/json');
     }
@@ -372,8 +372,7 @@ export class AuthCtrlService extends BaseService {
    */
   authCtrlGetAll(params?: {
     context?: HttpContext
-    body?: {
-}
+    body?: AuthFind
   }
 ): Observable<Array<AuthModel>> {
 
@@ -510,11 +509,9 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlUpdate$Response(params: {
-    id: string;
+    id: number;
     context?: HttpContext
-    body?: {
-'id'?: number;
-}
+    body?: AuthUpdate
   }
 ): Observable<StrictHttpResponse<AuthModel>> {
 
@@ -543,11 +540,9 @@ export class AuthCtrlService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authCtrlUpdate(params: {
-    id: string;
+    id: number;
     context?: HttpContext
-    body?: {
-'id'?: number;
-}
+    body?: AuthUpdate
   }
 ): Observable<AuthModel> {
 

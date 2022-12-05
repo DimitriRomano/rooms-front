@@ -1,6 +1,11 @@
+<ng-container>
+  <app-user-badge
+    *ngIf="!!user"
+    class="borderBetween"
+    [firstName]="user!.firstName"
+    [lastName]="user!.lastName"
+  ></app-user-badge>
+  <hr class="w-4/5 mx-auto" />
 
-<app-user-badge class="borderBetween" [firstName]="firstName" [lastName]="lastName"></app-user-badge>
-<hr class="w-4/5 mx-auto">
-
-<!--<app-hotel-info></app-hotel-info>-->
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</ng-container>

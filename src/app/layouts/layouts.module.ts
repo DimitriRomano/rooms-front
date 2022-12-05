@@ -13,6 +13,14 @@ import { InfoModule } from '../features/info/info.module';
 
 @NgModule({
   declarations: [LayoutsComponent, LayoutsMainComponent, LayoutsInfoComponent],
-  imports: [CommonModule, LayoutsRoutingModule, SharedModule, AngularMaterialModule, MainModule, ReactiveFormsModule, InfoModule]
+  imports: [
+    CommonModule,
+    LayoutsRoutingModule,
+    SharedModule,
+    AngularMaterialModule,
+    MainModule,
+    ReactiveFormsModule,
+    InfoModule
+  ]
 })
 export class LayoutsModule {}

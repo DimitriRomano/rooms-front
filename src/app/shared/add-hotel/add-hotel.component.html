@@ -1,0 +1,30 @@
+<form [formGroup]="hotelForm" (ngSubmit)="onClickSubmit()">
+
+  <div class="flex flex-wrap space-x-3 justify-center">
+
+    <ng-container *ngFor="let field of arrayOfFields">
+      <ng-container *ngIf="field === 'description'; else notDescription">
+        <mat-form-field appearance="outline">
+          <mat-label>Description :</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            #autosize=cdkTextareaAutosize
+            cdkAutosizeMinRows="5"
+            formControlName="description"
+            placeholder="Description"></textarea>
+        </mat-form-field>
+      </ng-container>
+      <ng-template #notDescription>
+        <mat-form-field appearance="outline">
+          <mat-label>{{field}}</mat-label>
+          <input type = "{{field == 'latitude' || field == 'longitude' ? 'number' : 'text'}}"  matInput formControlName="{{field}}" placeholder="{{field}}">
+        </mat-form-field>
+      </ng-template>
+
+    </ng-container>
+  </div>
+  <mat-dialog-actions>
+    <button mat-raised-button type="submit" color="primary" [disabled]="!hotelForm.valid">Ok</button>
+  </mat-dialog-actions>
+</form>

@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
+import {environment} from "../../environments/environment";
 
 /**
  * Base class for services
@@ -15,7 +16,7 @@ export class BaseService {
   ) {
   }
 
-  private _rootUrl: string = '';
+  private _rootUrl: string = environment.url;
 
   /**
    * Returns the root url for all operations in this service. If not set directly in this

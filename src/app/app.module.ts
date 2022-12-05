@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import {forwardRef, NgModule, Provider} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS, MatNativeDateModule, RippleGlobalOptions } f
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatDialogModule} from "@angular/material/dialog";
+import {ApiInterceptor} from "../api.interceptor";
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -19,6 +21,12 @@ const globalRippleConfig: RippleGlobalOptions = {
     enterDuration: 300,
     exitDuration: 0
   }
+};
+
+export const API_INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useExisting: forwardRef(() => ApiInterceptor),
+  multi: true
 };
 
 @NgModule({
@@ -32,10 +40,11 @@ const globalRippleConfig: RippleGlobalOptions = {
     LayoutsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
 
   ],
-  providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }, MatDatepickerModule, MatNativeDateModule],
+  providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }, MatDatepickerModule, MatNativeDateModule,      ApiInterceptor, API_INTERCEPTOR_PROVIDER,],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

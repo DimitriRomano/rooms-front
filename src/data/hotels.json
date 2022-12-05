@@ -141,7 +141,7 @@
     "phone": "01 23 45 67 89",
     "email": "plage-hotel@gmail.com",
     "website": "http://www.hotelplage.com",
-    "rooms": {
+    "roomxs": {
       "id": 3,
       "name": "Chambre double",
       "description": "Chambre double avec vue sur la mer",

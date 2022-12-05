@@ -6,6 +6,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthCtrlService } from './services/auth-ctrl.service';
 import { BookingCtrlService } from './services/booking-ctrl.service';
+import { FavoriteCtrlService } from './services/favorite-ctrl.service';
 import { FeatureCategoryCtrlService } from './services/feature-category-ctrl.service';
 import { FeatureCtrlService } from './services/feature-ctrl.service';
 import { HotelCtrlService } from './services/hotel-ctrl.service';
@@ -21,6 +22,7 @@ import { RoomCtrlService } from './services/room-ctrl.service';
   providers: [
     AuthCtrlService,
     BookingCtrlService,
+    FavoriteCtrlService,
     FeatureCategoryCtrlService,
     FeatureCtrlService,
     HotelCtrlService,

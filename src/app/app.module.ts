@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api.interceptor';
+import { FeaturesModule } from './features/features.module';
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -40,16 +41,18 @@ const globalRippleConfig: RippleGlobalOptions = {
     AngularMaterialModule,
     SharedModule,
     LayoutsModule,
-    MatDatepickerModule,
+    FeaturesModule,
+    HttpClientModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
+    ReservationModule
   ],
   providers: [
     ApiInterceptor,
     API_INTERCEPTOR_PROVIDER,
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
     MatDatepickerModule,
-    MatNativeDateModule
+    ReservationModule
   ],
   bootstrap: [AppComponent]
 })

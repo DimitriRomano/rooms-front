@@ -8,12 +8,37 @@ import { SearchHotelComponent } from './search-hotel/search-hotel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserBadgeComponent } from './user-badge/user-badge.component';
 import { HotelImagesGridComponent } from './hotel-images-grid/hotel-images-grid.component';
+import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RouterLinkWithHref } from '@angular/router';
 import { RouterLink, RouterLinkWithHref } from '@angular/router';
 
 @NgModule({
-  declarations: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, HotelImagesGridComponent, SearchHotelComponent],
-    exports: [SidebarClientComponent, LogoComponent, CardHotelComponent, UserBadgeComponent, SearchHotelComponent,  HotelImagesGridComponent],
-  imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, RouterLinkWithHref, RouterLink]
-
+  declarations: [
+    SidebarClientComponent,
+    LogoComponent,
+    CardHotelComponent,
+    UserBadgeComponent,
+    HotelImagesGridComponent,
+    SearchHotelComponent,
+    EditHotelComponent
+  ],
+  exports: [
+    SidebarClientComponent,
+    LogoComponent,
+    CardHotelComponent,
+    UserBadgeComponent,
+    SearchHotelComponent,
+    HotelImagesGridComponent
+  ],
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    RouterLinkWithHref,
+    RouterLink,
+    MatDialogModule,
+    RouterLinkWithHref
+  ]
 })
 export class SharedModule {}

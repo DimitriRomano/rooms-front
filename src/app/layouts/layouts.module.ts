@@ -10,9 +10,10 @@ import { LayoutsInfoComponent } from './layouts-info/layouts-info.component';
 import { MainModule } from '../features/main/main.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InfoModule } from '../features/info/info.module';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
-  declarations: [LayoutsComponent, LayoutsMainComponent, LayoutsInfoComponent],
+  declarations: [LayoutsComponent, LayoutsMainComponent, LayoutsInfoComponent, AdminPanelComponent],
   imports: [
     CommonModule,
     LayoutsRoutingModule,

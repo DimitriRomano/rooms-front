@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface FavoriteCreation {
-
   /**
    * Favorite user ID
    */

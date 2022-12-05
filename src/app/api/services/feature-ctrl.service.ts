@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { FeatureCreation } from '../models/feature-creation';
+import { FeatureFind } from '../models/feature-find';
 import { FeatureModel } from '../models/feature-model';
 import { FeatureUpdate } from '../models/feature-update';
 
@@ -22,59 +23,6 @@ export class FeatureCtrlService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
-  }
-
-  /**
-   * Path part for operation featureCtrlGetAll
-   */
-  static readonly FeatureCtrlGetAllPath = '/rest/features';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `featureCtrlGetAll()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  featureCtrlGetAll$Response(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<StrictHttpResponse<Array<FeatureModel>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlGetAllPath, 'get');
-    if (params) {
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<FeatureModel>>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `featureCtrlGetAll$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  featureCtrlGetAll(params?: {
-    context?: HttpContext
-    body?: {
-}
-  }
-): Observable<Array<FeatureModel>> {
-
-    return this.featureCtrlGetAll$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<FeatureModel>>) => r.body as Array<FeatureModel>)
-    );
   }
 
   /**
@@ -125,6 +73,57 @@ export class FeatureCtrlService extends BaseService {
 
     return this.featureCtrlCreate$Response(params).pipe(
       map((r: StrictHttpResponse<FeatureModel>) => r.body as FeatureModel)
+    );
+  }
+
+  /**
+   * Path part for operation featureCtrlGetAll
+   */
+  static readonly FeatureCtrlGetAllPath = '/rest/features';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `featureCtrlGetAll()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  featureCtrlGetAll$Response(params?: {
+    context?: HttpContext
+    body?: FeatureFind
+  }
+): Observable<StrictHttpResponse<Array<FeatureModel>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, FeatureCtrlService.FeatureCtrlGetAllPath, 'patch');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<FeatureModel>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `featureCtrlGetAll$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  featureCtrlGetAll(params?: {
+    context?: HttpContext
+    body?: FeatureFind
+  }
+): Observable<Array<FeatureModel>> {
+
+    return this.featureCtrlGetAll$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<FeatureModel>>) => r.body as Array<FeatureModel>)
     );
   }
 

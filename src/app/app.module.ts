@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +13,9 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS, MatNativeDateModule, RippleGlobalOptions } f
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatDialogModule} from "@angular/material/dialog";
+import { HttpClientModule } from '@angular/common/http';
+import { ReservationModule } from './features/reservation/reservation.module';
+import { FeaturesModule } from './features/features.module';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -30,10 +34,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     AngularMaterialModule,
     SharedModule,
     LayoutsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDialogModule
-
+    FeaturesModule,
+    HttpClientModule,
+    ReservationModule
   ],
   providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }, MatDatepickerModule, MatNativeDateModule],
   bootstrap: [AppComponent]

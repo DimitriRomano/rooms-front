@@ -1,6 +1,5 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
-import {MatSidenav} from "@angular/material/sidenav";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-layouts',
@@ -8,7 +7,6 @@ import {MatSidenav} from "@angular/material/sidenav";
   styleUrls: ['./layouts.component.scss']
 })
 export class LayoutsComponent implements OnInit {
-
   @ViewChild('sidenav') sidenav!: MatSidenav;
   reason = '';
   constructor() {}
@@ -22,11 +20,8 @@ export class LayoutsComponent implements OnInit {
     }
   }
 
-
-
   close(reason: string) {
     this.reason = reason;
     this.sidenav.close();
   }
-
 }

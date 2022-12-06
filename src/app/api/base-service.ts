@@ -1,19 +1,21 @@
-<<<<<<< HEAD
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
-import {environment} from "../../environments/environment";
 
 /**
  * Base class for services
  */
 @Injectable()
 export class BaseService {
-  constructor(protected config: ApiConfiguration, protected http: HttpClient) {}
+  constructor(
+    protected config: ApiConfiguration,
+    protected http: HttpClient
+  ) {
+  }
 
-  private _rootUrl: string = environment.url;
+  private _rootUrl: string = '';
 
   /**
    * Returns the root url for all operations in this service. If not set directly in this
@@ -30,4 +32,3 @@ export class BaseService {
     this._rootUrl = rootUrl;
   }
 }
->>>>>>> reservation+auth

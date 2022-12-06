@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
@@ -11,7 +10,6 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { AuthCreation } from '../models/auth-creation';
-import { AuthFind } from '../models/auth-find';
 import { AuthFind } from '../models/auth-find';
 import { AuthModel } from '../models/auth-model';
 import { AuthUpdate } from '../models/auth-update';
@@ -94,7 +92,7 @@ export class AuthCtrlService extends BaseService {
     context?: HttpContext
     body?: AuthCreation
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<AuthModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlSignupPath, 'post');
     if (params) {
@@ -102,13 +100,13 @@ export class AuthCtrlService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<AuthModel>;
       })
     );
   }
@@ -123,10 +121,10 @@ export class AuthCtrlService extends BaseService {
     context?: HttpContext
     body?: AuthCreation
   }
-): Observable<string> {
+): Observable<AuthModel> {
 
     return this.authCtrlSignup$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel)
     );
   }
 
@@ -144,20 +142,20 @@ export class AuthCtrlService extends BaseService {
   authCtrlLogout$Response(params?: {
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlLogoutPath, 'post');
     if (params) {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'text',
       accept: '*/*',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
       })
     );
   }
@@ -171,10 +169,10 @@ export class AuthCtrlService extends BaseService {
   authCtrlLogout(params?: {
     context?: HttpContext
   }
-): Observable<string> {
+): Observable<void> {
 
     return this.authCtrlLogout$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
@@ -517,118 +515,6 @@ export class AuthCtrlService extends BaseService {
   }
 ): Observable<StrictHttpResponse<AuthModel>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlGetOnePath, 'get');
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<AuthModel>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `authCtrlGetOne$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  authCtrlGetOne(params: {
-    id: string;
-    context?: HttpContext
-    body?: {
-'id'?: number;
-}
-  }
-): Observable<AuthModel> {
-
-    return this.authCtrlGetOne$Response(params).pipe(
-      map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel)
-    );
-  }
-
-  /**
-   * Path part for operation authCtrlDelete
-   */
-  static readonly AuthCtrlDeletePath = '/rest/auth/{id}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `authCtrlDelete()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  authCtrlDelete$Response(params: {
-    id: string;
-    context?: HttpContext
-    body?: {
-'id'?: number;
-}
-  }
-): Observable<StrictHttpResponse<string>> {
-
-    const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlDeletePath, 'delete');
-    if (params) {
-      rb.path('id', params.id, {});
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
-      context: params?.context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
-      })
-    );
-  }
-
-  /**
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `authCtrlDelete$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  authCtrlUpdate(params: {
-    id: number;
-    context?: HttpContext
-    body?: AuthUpdate
-  }
-): Observable<string> {
-
-    return this.authCtrlDelete$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
-    );
-  }
-
-  /**
-   * Path part for operation authCtrlUpdate
-   */
-  static readonly AuthCtrlUpdatePath = '/rest/auth/{id}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `authCtrlUpdate()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  authCtrlUpdate$Response(params: {
-    id: number;
-    context?: HttpContext
-    body?: AuthUpdate
-  }
-): Observable<StrictHttpResponse<AuthModel>> {
-
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlUpdatePath, 'patch');
     if (params) {
       rb.path('id', params.id, {});
@@ -666,4 +552,3 @@ export class AuthCtrlService extends BaseService {
   }
 
 }
->>>>>>> reservation+auth

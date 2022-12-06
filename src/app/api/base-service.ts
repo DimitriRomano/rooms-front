@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
@@ -10,11 +11,7 @@ import {environment} from "../../environments/environment";
  */
 @Injectable()
 export class BaseService {
-  constructor(
-    protected config: ApiConfiguration,
-    protected http: HttpClient
-  ) {
-  }
+  constructor(protected config: ApiConfiguration, protected http: HttpClient) {}
 
   private _rootUrl: string = environment.url;
 
@@ -33,3 +30,4 @@ export class BaseService {
     this._rootUrl = rootUrl;
   }
 }
+>>>>>>> reservation+auth

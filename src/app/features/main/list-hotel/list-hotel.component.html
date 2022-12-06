@@ -3,17 +3,6 @@
     <h2>Sélectionner un hôtel</h2>
   </div>
   <div class="list_hotel flex flex-wrap gap-4 justify-center overflow-y-scroll h-[85vh]">
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
-    <app-card-hotel></app-card-hotel>
+        <app-card-hotel *ngFor='let hotel of hotels' [hotel]='hotel'></app-card-hotel>
   </div>
 </div>

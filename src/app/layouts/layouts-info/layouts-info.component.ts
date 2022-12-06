@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { AuthModel } from 'src/app/api/models';
+import { AuthCtrlService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-layouts-info',
@@ -9,16 +10,15 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./layouts-info.component.scss']
 })
 export class LayoutsInfoComponent implements OnInit {
+  user?: AuthModel;
 
-  firstName = faker.name.firstName();
-  lastName = faker.name.lastName();
-  constructor() { }
+  constructor(private authCtrlService: AuthCtrlService) {}
 
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
   ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.authCtrlService.authCtrlAuthInfo().subscribe((user) => {
+        this.user = user;
+      });
+    }
   }
-
 }

@@ -1,0 +1,24 @@
+<mat-tab-group *ngIf="!isLogin; else login" mat-stretch-tabs="true" mat-align-tabs="center">
+  <mat-tab>
+    <ng-template mat-tab-label class="">
+      <mat-icon> person </mat-icon>
+      Login
+    </ng-template>
+    <div style="padding: 20%">
+      <app-login></app-login>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon> person_add </mat-icon>
+      Register
+    </ng-template>
+    <div style="padding: 20%">
+      <app-signup></app-signup>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<ng-template #login>
+  <app-profile></app-profile>
+</ng-template>

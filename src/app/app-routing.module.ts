@@ -4,7 +4,8 @@ import {AdminPanelComponent} from "./layouts/admin-panel/admin-panel.component";
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./layouts/layouts.module').then((m) => m.LayoutsModule),},
-  {path: 'admin', component: AdminPanelComponent,}
+  {path: 'admin', component: AdminPanelComponent,},
+  {path: 'reservations', loadChildren: () => import('./features/reservation/reservation.module').then((m) => m.ReservationModule),},
 
 ];
 

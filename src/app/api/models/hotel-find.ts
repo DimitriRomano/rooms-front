@@ -1,4 +1,3 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface HotelFind {
-}
+export interface HotelFind {}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {faker} from "@faker-js/faker";
 
 @Component({
@@ -8,10 +8,7 @@ import {faker} from "@faker-js/faker";
 })
 export class HotelImagesGridComponent implements OnInit {
 
-  image1 = faker.image.city()
-  image2 = faker.image.abstract()
-  image3 = faker.image.abstract()
-
+  @Input() images: string[] = [];
   constructor() { }
 
   ngOnInit(): void {

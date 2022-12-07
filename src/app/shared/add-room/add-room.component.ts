@@ -25,23 +25,24 @@ export class AddRoomComponent implements OnInit {
       nbBed: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       hotelId: new FormControl(this.data.id, Validators.required),
-      //featuresIds: new FormControl('', Validators.required),
+      featuresIds: new FormControl('', Validators.required),
       images: new FormControl('', Validators.required),
     })
   }
 
   onClickSubmit() {
     this.roomForm.value.images = this.roomForm.value.images.split(',')
-    this.roomForm.value.featuresIds = []
+    //this.roomForm.value.featuresIds = []
 
-    /*this.roomForm.value.featuresIds = this.roomForm.value.featuresIds.split(',')
+    this.roomForm.value.featuresIds = this.roomForm.value.featuresIds.split(',')
     if (this.roomForm.value.featuresIds.length > 0) {
       this.roomForm.value.featuresIds = this.roomForm.value.featuresIds.map((feature: any) => {
         return parseInt(feature)
       })
     } else {
       this.roomForm.value.featuresIds = []
-    }*/
+    }
+
     this.dialogRef.close(this.roomForm.value)
 
 

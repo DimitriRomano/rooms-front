@@ -27,6 +27,12 @@ export class AuthService {
     password: ['']
   });
 
+  editUserForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    image: ['']
+  });
+
   storeToken = (token: string) => {
     localStorage.setItem('token', token);
   };

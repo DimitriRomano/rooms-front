@@ -1,25 +1,26 @@
-<div class='pt-4 border-2 border-amber-500 rounded-2xl mt-2 mb-6 leading-4'>
+<div class='flex items-end gap-4 border-2 border-amber-500 rounded-2xl mt-4 mb-6 leading-4'>
   <h2 class='text-xl mb-0'>Votre profil :</h2>
   <span class='text-4xl font-bold bg-amber-500 p-2 rounded-xl'>{{user!.firstName}} {{user!.lastName}}</span>
 </div>
 
 <h2 class='text-xl mb-2'>Modifier vos informations :</h2>
-<form action='' class='flex flex-wrap gap-3 w-fit'>
+<form [formGroup]="editUserForm" class='flex flex-wrap items-center gap-3 w-fit'>
   <mat-form-field>
     <mat-label for="firstName">Prénom</mat-label>
-    <input matInput type="text" id="firstName" name="firstName" [(ngModel)]="user!.firstName" />
+    <input matInput type="text" formControlName="firstName" name="firstName" [ngModel]="user!.firstName" />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label for="lastName">Nom</mat-label>
-    <input matInput type="text" id="lastName" name="lastName" [(ngModel)]="user!.lastName" />
+    <input matInput type="text" formControlName="lastName" name="lastName" [ngModel]="user!.lastName" />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label for="email">Email</mat-label>
-    <input matInput type="text" id="email" name="email" [(ngModel)]="user!.email" />
+    <input matInput type="text" formControlName="image" name="email" [ngModel]="user!.email" />
   </mat-form-field>
-  <button mat-stroked-button color='accent' type='submit' class='save'>Sauvegarder</button>
+
+  <button mat-raised-button class="h-fit" color="accent" type="submit" (click)='printvalue()'>Sauvegarder</button>
 </form>
 
 <div class='mt-2'>

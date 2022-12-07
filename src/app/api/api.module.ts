@@ -9,6 +9,8 @@ import { BookingCtrlService } from './services/booking-ctrl.service';
 import { FavoriteCtrlService } from './services/favorite-ctrl.service';
 import { FeatureCategoryCtrlService } from './services/feature-category-ctrl.service';
 import { FeatureCtrlService } from './services/feature-ctrl.service';
+import { FeatureHotelCtrlService } from './services/feature-hotel-ctrl.service';
+import { FeatureRoomCtrlService } from './services/feature-room-ctrl.service';
 import { HotelCtrlService } from './services/hotel-ctrl.service';
 import { RoomCtrlService } from './services/room-ctrl.service';
 
@@ -25,6 +27,8 @@ import { RoomCtrlService } from './services/room-ctrl.service';
     FavoriteCtrlService,
     FeatureCategoryCtrlService,
     FeatureCtrlService,
+    FeatureHotelCtrlService,
+    FeatureRoomCtrlService,
     HotelCtrlService,
     RoomCtrlService,
     ApiConfiguration

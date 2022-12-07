@@ -1,14 +1,18 @@
-<mat-card class="card-hotel">
-  <img mat-card-image src="{{url_image}}" alt="picsum">
-  <mat-card-content>
-    <strong>{{name}}</strong>
-    <p>
-      <span class='text-2xl'>{{price}}</span>/nuit
-    </p>
+<a [routerLink]="['/hotel', hotel.id]">
+  <mat-card class="card-hotel">
+    <img mat-card-image src="{{hotel.images[0]}}" alt='image principale'>
+    <mat-card-content>
+      <strong>{{hotel.name}}</strong>
+      <p>
+        <span class='text-2xl'>{{hotel.city}}</span>
+      </p>
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>Réserver</button>
-    <button mat-icon-button color='accent'><mat-icon>favorite_border</mat-icon></button>
-  </mat-card-actions>
-</mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        [routerLink]="['/hotel', hotel.id]"
+        mat-button>Réserver</button>
+      <button mat-icon-button color='accent'><mat-icon>favorite_border</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</a>

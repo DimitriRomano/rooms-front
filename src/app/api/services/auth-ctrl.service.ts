@@ -92,7 +92,7 @@ export class AuthCtrlService extends BaseService {
     context?: HttpContext
     body?: AuthCreation
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<AuthModel>> {
 
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlSignupPath, 'post');
     if (params) {
@@ -100,13 +100,13 @@ export class AuthCtrlService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: '*/*',
+      responseType: 'json',
+      accept: 'application/json',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<AuthModel>;
       })
     );
   }
@@ -121,10 +121,10 @@ export class AuthCtrlService extends BaseService {
     context?: HttpContext
     body?: AuthCreation
   }
-): Observable<string> {
+): Observable<AuthModel> {
 
     return this.authCtrlSignup$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<AuthModel>) => r.body as AuthModel)
     );
   }
 
@@ -142,20 +142,20 @@ export class AuthCtrlService extends BaseService {
   authCtrlLogout$Response(params?: {
     context?: HttpContext
   }
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AuthCtrlService.AuthCtrlLogoutPath, 'post');
     if (params) {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'text',
       accept: '*/*',
       context: params?.context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
       })
     );
   }
@@ -169,10 +169,10 @@ export class AuthCtrlService extends BaseService {
   authCtrlLogout(params?: {
     context?: HttpContext
   }
-): Observable<string> {
+): Observable<void> {
 
     return this.authCtrlLogout$Response(params).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

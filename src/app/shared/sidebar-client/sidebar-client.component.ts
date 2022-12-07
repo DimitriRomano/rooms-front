@@ -10,5 +10,10 @@ export class SidebarClientComponent implements OnInit {
   mode = 'side';
   constructor() {}
 
+  handleLogout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
+
   ngOnInit(): void {}
 }

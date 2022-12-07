@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faker } from '@faker-js/faker';
-
 
 @Component({
   selector: 'app-user-badge',
@@ -8,18 +8,18 @@ import { faker } from '@faker-js/faker';
   styleUrls: ['./user-badge.component.scss']
 })
 export class UserBadgeComponent implements OnInit {
-
-  @Input() firstName!: string
-  @Input() lastName!: string
+  @Input() firstName!: string;
+  @Input() lastName!: string;
 
   profilImage = faker.image.avatar();
 
   //TODO Change icon on click
-  constructor() { }
+  constructor(public router: Router) {}
 
+  handleGoToProfile = () => {
+    //redirect to "/" using router service
+    this.router.navigate(['/']);
+  };
 
-  ngOnInit(): void {
-  }
-
-
+  ngOnInit(): void {}
 }

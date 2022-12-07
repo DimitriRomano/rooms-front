@@ -2,7 +2,7 @@
   <div class="flex items-center space-y-1 ml-2 py-1">
     <img *ngIf="profilImage; else noimage" class="w-[2.5rem] h-[2.5rem] rounded-full" src="{{ profilImage }}" alt="Image de profil" />
     <ng-template #noimage><mat-icon class='noimage-icon'>account_circle</mat-icon></ng-template>
-    <div class="ml-6 flex flex-col">
+    <div class="ml-10 flex flex-col">
       <span class="font-bold"> {{ firstName }} {{ lastName }} </span>
       <span class="text-gray-500 text-sm"> Nouveau membre </span>
     </div>

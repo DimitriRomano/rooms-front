@@ -1,1 +1,36 @@
-<div>This is the profile speaking.</div>
+<div class='flex items-end gap-4 border-2 border-amber-500 rounded-2xl mt-4 mb-6 leading-4'>
+  <h2 class='text-xl mb-0'>Votre profil :</h2>
+  <span class='text-4xl font-bold bg-amber-500 p-2 rounded-xl'>{{user!.firstName}} {{user!.lastName}}</span>
+</div>
+
+<h2 class='text-xl mb-2'>Modifier vos informations :</h2>
+<form [formGroup]="editUserForm" class='flex flex-wrap items-center gap-3 w-fit'>
+  <mat-form-field>
+    <mat-label for="firstName">Prénom</mat-label>
+    <input matInput type="text" formControlName="firstName" name="firstName" [ngModel]="user!.firstName" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="lastName">Nom</mat-label>
+    <input matInput type="text" formControlName="lastName" name="lastName" [ngModel]="user!.lastName" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="email">Email</mat-label>
+    <input matInput type="text" formControlName="image" name="email" [ngModel]="user!.email" />
+  </mat-form-field>
+
+  <button mat-raised-button class="h-fit" color="accent" type="submit" (click)='printvalue()'>Sauvegarder</button>
+</form>
+
+<div class='mt-2'>
+  <h2 class='text-xl'>Vos réservations :</h2>
+  <div class='flex flex-col gap-1'>
+    <div class='flex flex-row justify-between items-center'>
+      <span>HOTEL_NAME</span>
+      <span>START_DATE</span>
+      <span>END_DATE</span>
+      <span class='font-bold bg-amber-500 p-2 rounded-xl'>NB_PEOPLE</span>
+    </div>
+  </div>
+</div>

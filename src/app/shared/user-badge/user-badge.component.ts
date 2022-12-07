@@ -10,8 +10,7 @@ import { faker } from '@faker-js/faker';
 export class UserBadgeComponent implements OnInit {
   @Input() firstName!: string;
   @Input() lastName!: string;
-
-  profilImage = faker.image.avatar();
+  @Input() profilImage: string | null | undefined;
 
   //TODO Change icon on click
   constructor(public router: Router) {}

@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'hotel/:id',
     component: HotelInfoComponent
+  },
+  {
+    path: 'profile',
+    redirectTo: ''
   }
 ];
 

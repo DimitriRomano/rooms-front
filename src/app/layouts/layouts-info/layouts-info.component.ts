@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faker } from '@faker-js/faker';
-import { FormControl, FormGroup } from '@angular/forms';
 import { AuthModel } from 'src/app/api/models';
 import { AuthCtrlService } from 'src/app/api/services';
 

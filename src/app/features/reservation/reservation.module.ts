@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule]
+  providers: [MatDatepickerModule, MatNativeDateModule],
+  exports: [ReservationDetailComponent]
 })
 export class ReservationModule { }

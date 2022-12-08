@@ -22,7 +22,7 @@ export class HotelInfoComponent implements OnInit, OnDestroy {
     private featureService: FeatureCtrlService
   ) {}
 
-  hotelId: number = 0;
+  public hotelId: number = 0;
   private subscription!: Subscription;
   private hotelSubscription!: Subscription;
   private pivotFeatures!: Subscription;
@@ -48,7 +48,6 @@ export class HotelInfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe((params) => {
       this.hotelId = +params['id'];
-
       this.hotelSubscription = this.hotelService.hotelCtrlGetOne({ id: this.hotelId }).subscribe((item) => {
         this.hotel = item;
       });

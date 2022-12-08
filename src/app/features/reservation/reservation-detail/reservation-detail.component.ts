@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingModel, RoomModel } from 'src/app/api/models';
@@ -25,10 +25,19 @@ export class ReservationDetailComponent implements OnInit {
     end: new FormControl<Date | null>(null),
   });
 
+  @Input() public hotelId: number | undefined;
+
   constructor(private route: ActivatedRoute, private roomService: RoomCtrlService,private reservationService: BookingCtrlService) { }
 
   ngOnInit(): void {
-    this.idHotel = Number(this.route.snapshot.paramMap.get("id"));
+    // if(this.route.snapshot.paramMap.get("id")){
+    //   this.idHotel = Number(this.route.snapshot.paramMap.get("id"));
+    // }else if(this.hotelId){
+    //   this.idHotel = Number(this.hotelId);
+    // }
+    this.idHotel = Number(this.hotelId);
+    console.log(this.idHotel);
+    
     this.roomService.roomCtrlGetAll({body: {
       "where" : {
         "hotelId" : this.idHotel

@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingModel, RoomModel } from 'src/app/api/models';
@@ -9,7 +9,7 @@ import { BookingCtrlService, HotelCtrlService, RoomCtrlService } from 'src/app/a
   templateUrl: './reservation-detail.component.html',
   styleUrls: ['./reservation-detail.component.scss']
 })
-export class ReservationDetailComponent implements OnInit {
+export class ReservationDetailComponent implements OnInit,OnChanges {
 
 
   public roomsInitial : RoomModel[]=  [];
@@ -36,7 +36,6 @@ export class ReservationDetailComponent implements OnInit {
     //   this.idHotel = Number(this.hotelId);
     // }
     this.idHotel = Number(this.hotelId);
-    console.log(this.idHotel);
     
     this.roomService.roomCtrlGetAll({body: {
       "where" : {
@@ -54,6 +53,11 @@ export class ReservationDetailComponent implements OnInit {
     );
 
   }
+
+  ngOnChanges(): void {
+    this.idHotel = Number(this.hotelId);
+  }
+
 
   public filterRooms(startData: Date | undefined | null, endData: Date | undefined | null) {
     //dataformat: 2021-05-01T00:00:00.000Z

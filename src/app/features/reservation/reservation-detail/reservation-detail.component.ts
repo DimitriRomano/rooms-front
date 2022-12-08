@@ -56,8 +56,13 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
 
   ngOnChanges(): void {
     this.idHotel = Number(this.hotelId);
+    this.resetFilter();
   }
 
+  public resetFilter(){
+    this.roomsFiltered = [];
+    this.isFilterActive = false;
+  }
 
   public filterRooms(startData: Date | undefined | null, endData: Date | undefined | null) {
     //dataformat: 2021-05-01T00:00:00.000Z
@@ -114,7 +119,7 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
         }
       }).subscribe(
         (data) => {
-          console.log(data);
+          this.resetFilter();
         }
       );
   }}

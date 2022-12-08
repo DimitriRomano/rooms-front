@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HotelInfoComponent } from '../../features/info/hotel-info/hotel-info.component';
 import { AuthComponent } from '../../features/info/auth/auth.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'profile',
     redirectTo: ''
+  },
+  {
+    path:'reservations',
+    component: ReservationsComponent
   }
 ];
 

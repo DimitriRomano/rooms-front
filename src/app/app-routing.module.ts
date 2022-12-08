@@ -4,9 +4,8 @@ import { AdminPanelComponent } from "./layouts/admin-panel/admin-panel.component
 import { AuthGuard } from "./core/services/auth.guard";
 
 const routes: Routes = [
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
   { path: '', loadChildren: () => import('./layouts/layouts.module').then((m) => m.LayoutsModule), },
-  { path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard] },
-  { path: 'reservations', loadChildren: () => import('./features/reservation/reservation.module').then((m) => m.ReservationModule), },
 
 ];
 

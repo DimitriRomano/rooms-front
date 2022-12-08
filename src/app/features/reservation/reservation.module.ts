@@ -7,11 +7,13 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReservationsListComponent } from './reservations-list/reservations-list.component';
 
 
 @NgModule({
   declarations: [
-    ReservationDetailComponent
+    ReservationDetailComponent,
+    ReservationsListComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [MatDatepickerModule, MatNativeDateModule],
-  exports: [ReservationDetailComponent]
+  exports: [ReservationDetailComponent, ReservationsListComponent]
 })
 export class ReservationModule { }

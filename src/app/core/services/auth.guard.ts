@@ -15,19 +15,22 @@ export class AuthGuard implements CanActivate {
     console.log('CanActivate called')
     let isAdmin;
     this.authCtrlService.authCtrlAuthInfo().subscribe((user) => {
-      if (user.role === 'ADMIN') {
-        isAdmin = true;
-      } else {
-        isAdmin = false;
-      }
+    //   if (user.role === 'ADMIN') {
+    //     isAdmin = true;
+    //   } else {
+    //     isAdmin = false;
+    //   }
 
-      if (isAdmin) {
-        return true;
-      } else {
-        this.router.navigate(['/'])
-        return false;
-      }
-    });
+    //   if (isAdmin) {
+    //     return true;
+    //   } else {
+    //     this.router.navigate(['/'])
+    //     return false;
+    //   }
+    // });
+
+    console.log(user.role)
+    })
     return true
 
 

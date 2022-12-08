@@ -24,6 +24,9 @@
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="selectedDate(range.value.start,range.value.end)">Submit</button>
         <ng-container *ngIf="isFilterActive">
+            <ng-container *ngIf="!roomsFiltered.length">
+                <div>Pas de chambres trouvés</div>
+            </ng-container>
             <div *ngFor="let room of roomsFiltered" >
                 <div class="max-w-sm rounded overflow-hidden shadow-lg">
                     <!-- <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"> -->

@@ -2,8 +2,8 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookingModel, RoomModel } from 'src/app/api/models';
-import { BookingCtrlService, HotelCtrlService, RoomCtrlService } from 'src/app/api/services';
+import { AuthModel, BookingModel, RoomModel } from 'src/app/api/models';
+import { AuthCtrlService, BookingCtrlService, HotelCtrlService, RoomCtrlService } from 'src/app/api/services';
 @Component({
   selector: 'app-reservation-detail',
   templateUrl: './reservation-detail.component.html',
@@ -25,9 +25,11 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
     end: new FormControl<Date | null>(null),
   });
 
+  public user?: AuthModel;
+
   @Input() public hotelId: number | undefined;
 
-  constructor(private route: ActivatedRoute, private roomService: RoomCtrlService,private reservationService: BookingCtrlService) { }
+  constructor(private route: ActivatedRoute, private roomService: RoomCtrlService,private reservationService: BookingCtrlService, private authCtrlService: AuthCtrlService ) { }
 
   ngOnInit(): void {
     // if(this.route.snapshot.paramMap.get("id")){
@@ -38,6 +40,11 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
     this.idHotel = Number(this.hotelId);
     
     this.getRooms();
+    if (localStorage.getItem('token')) {
+      this.authCtrlService.authCtrlAuthInfo().subscribe((user) => {
+        this.user = user;
+      });
+    }
 
   }
 
@@ -115,14 +122,14 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
   }
 
   public registerReservation(room: RoomModel) {
-    if(this.range.value.start != null && this.range.value.end != null) {
+    if(this.range.value.start != null && this.range.value.end != null && this.user) {
       this.reservationService.bookingCtrlCreate({
         body: {
           "checkIn" : String(this.range.value.start),
           "checkOut" : String(this.range.value.end),
           "roomId" : room.id,
           "nbPersons": this.selected,
-          "authId" : 1,
+          "authId" : this.user?.id,
         }
       }).subscribe(
         (data) => {

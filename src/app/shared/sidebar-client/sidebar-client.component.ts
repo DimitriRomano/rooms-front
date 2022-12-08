@@ -1,3 +1,4 @@
+import { AuthCtrlService } from 'src/app/api/services';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 /** @title Responsive sidenav */
@@ -8,12 +9,20 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 })
 export class SidebarClientComponent implements OnInit {
   mode = 'side';
-  constructor() {}
+  isAdmin = false;
+  constructor(private authCtrlService: AuthCtrlService) { }
 
   handleLogout() {
     localStorage.removeItem('token');
     window.location.reload();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.authCtrlService.authCtrlAuthInfo().subscribe((user) => {
+      if (user.role === 'ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+  }
 }

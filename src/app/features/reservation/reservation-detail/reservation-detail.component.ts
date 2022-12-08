@@ -37,6 +37,18 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
     // }
     this.idHotel = Number(this.hotelId);
     
+    this.getRooms();
+
+  }
+
+  ngOnChanges(): void {
+    this.idHotel = Number(this.hotelId);
+    this.resetFilter();
+    this.getRooms();
+  }
+
+  public getRooms(){
+    this.roomList = [];
     this.roomService.roomCtrlGetAll({body: {
       "where" : {
         "hotelId" : this.idHotel
@@ -50,17 +62,12 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
         this.roomsInitial = data;
         this.roomsFiltered = data
       }
-    );
-
+    )
   }
 
-  ngOnChanges(): void {
-    this.idHotel = Number(this.hotelId);
-    this.resetFilter();
-  }
 
   public resetFilter(){
-    this.roomsFiltered = [];
+    this.roomsFiltered = this.roomsInitial;
     this.isFilterActive = false;
   }
 

@@ -30,7 +30,6 @@ export class ReservationsListComponent implements OnInit {
     if (localStorage.getItem('token')) {
       this.authService.authCtrlAuthInfo().subscribe((user) => {
         this.user = user;
-        console.log('user', user);
 
         if(this.user.role === 'ADMIN'){
           this.hotelService.hotelCtrlGetAll({body: {
@@ -39,11 +38,10 @@ export class ReservationsListComponent implements OnInit {
             }
           }}).subscribe((data) => {
             const hotelsOwned : Array<number> = [];
-            console.log('hotelsssssss', data);
             data.map((hotel) => {
               hotelsOwned.push(hotel.id);
             })
-            console.log('hotels', hotelsOwned);
+            // console.log('hotels', hotelsOwned);
             this.roomService.roomCtrlGetAll({body: {
               "where": {
                 "hotelId": {
@@ -51,12 +49,11 @@ export class ReservationsListComponent implements OnInit {
                 }
               }
             }}).subscribe((data) => {
-              console.log('rooms', data);
               const roomsOwned : Array<number> = [];
               data.map((room) => {
                 roomsOwned.push(room.id);
               })
-              console.log(roomsOwned);
+              // console.log(roomsOwned);
               this.bookingService.bookingCtrlGetAll({body: {
                 "where": {
                   "roomId": {
@@ -64,12 +61,20 @@ export class ReservationsListComponent implements OnInit {
                   }
                 }
               }}).subscribe((data) => {
-                console.log('reservations', data);
                 this.reservations = data;
               })
             })
 
           });
+        }else{
+          this.bookingService.bookingCtrlGetAll({body: {
+            "where": {
+              "authId": this.user.id
+            }
+          }}).subscribe((data) => {
+            // console.log('reservations', data);
+            this.reservations = data;
+          })
         }
      });
     }

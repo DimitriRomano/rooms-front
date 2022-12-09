@@ -24,10 +24,10 @@ export class ReservationsListComponent implements OnInit {
   reservations?: BookingModel[] = [];
 
   roomIds: Array<number> = [];
-  rooms?: /* reservationId: RoomModel [] */ { [key: number]: RoomModel } = {};
+  rooms: /* reservationId: RoomModel [] */ { [key: number]: RoomModel } = {};
 
   userIds: Array<number> = [];
-  users?: { [key: number]: AuthModel } = {};
+  users: { [key: number]: AuthModel } = {};
 
   getReservations = () => {
     if (localStorage.getItem('token')) {
@@ -77,6 +77,44 @@ export class ReservationsListComponent implements OnInit {
                     })
                     .subscribe((data) => {
                       this.reservations = data;
+                      this.roomIds = data.map((res) => res.roomId!);
+                      this.userIds = data.map((res) => res.authId!);
+                      this.roomService
+                        .roomCtrlGetAll({
+                          body: {
+                            where: {
+                              id: {
+                                in: this.roomIds
+                              }
+                            }
+                          }
+                        })
+                        .subscribe((dataRoom) => {
+                          //returrn {reservationID : room}
+                          let rooms: { [key: number]: RoomModel } = {};
+                          this.reservations?.forEach((res) => {
+                            rooms[res.id] = dataRoom.find((room: RoomModel) => room.id === res.roomId)!;
+                          });
+                          this.rooms = rooms;
+                        });
+
+                      this.authService
+                        .authCtrlGetAll({
+                          body: {
+                            where: {
+                              id: {
+                                in: this.userIds
+                              }
+                            }
+                          }
+                        })
+                        .subscribe((dataUser) => {
+                          let users: { [key: number]: AuthModel } = {};
+                          this.reservations?.forEach((res) => {
+                            users[res.id] = dataUser.find((user: AuthModel) => user.id === res.authId)!;
+                          });
+                          this.users = users;
+                        });
                     });
                 });
             });

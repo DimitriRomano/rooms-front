@@ -1,40 +1,50 @@
-<div class='mt-2'>
-    <h2 class='text-xl'>Vos réservations :</h2>
-    <div class='flex flex-col gap-1'>
-        <ng-container *ngIf="reservations">
-            <table class="table-auto">
-              <thead>
-                  <tr>
-                        <th *ngIf="user.role == 'ADMIN'">Utilisateur</th>
-                        <th>Chambre</th>
-                      <th>Date d'arrivée</th>
-                      <th>Date de départ</th>
-                      <th>Nombre de personne(s)</th>
-                      <th>Statut</th>
-                      <th>Action</th>
-                  </tr>
-                  <tr *ngFor="let reservation of reservations" class="text-center">
-                        <td *ngIf="user.role == 'ADMIN'">{{reservation.authId}}</td>
-                        <td>{{reservation.roomId}}</td>
-                      <td>{{reservation.checkIn | date:'shortDate'}}</td>
-                      <td>{{reservation.checkOut| date:'shortDate'}}</td>
-                      <td>{{reservation.nbPerson}}</td>
-                        <td>
-                            <span *ngIf="reservation.status === 'PENDING'" class="p-2 w-fit bg-yellow-500 rounded-full">En attente</span>
-                            <span *ngIf="reservation.status === 'CONFIRMED'" class="p-2 w-fit bg-green-500 rounded-full">Confirmée</span>
-                            <span *ngIf="reservation.status === 'CANCELED'" class="p-2 w-fit bg-red-500 rounded-full">Annulée</span>
-                        </td>
-                      <td>
-                      <button *ngIf="reservation.status === 'PENDING'" (click)="cancelReservation(reservation)">❌</button>
-                      <button *ngIf="reservation.status === 'PENDING' && user.role==='ADMIN'" (click)="acceptReservation(reservation)">✅</button>
-                      </td>
-                  </tr>
-              </thead>
-            </table>
-        </ng-container>
-        <div *ngIf="!reservations">
-            <p>Vous n'avez pas encore de réservation</p>
-        </div> 
+<div class="mt-2">
+  <h2 class="text-xl">Vos réservations :</h2>
+  <div class="flex flex-col gap-1">
+    <ng-container *ngIf="reservations">
+      <table class="table-auto">
+        <thead>
+          <tr>
+            <th *ngIf="user.role == 'ADMIN'">Utilisateur</th>
+            <th>Chambre</th>
+            <th>Date d'arrivée</th>
+            <th>Date de départ</th>
+            <th>Nombre de personne(s)</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor="let reservation of reservations" class="text-center">
+            <td *ngIf="user.role == 'ADMIN'">
+              {{ users![reservation.id].firstName + users![reservation.id].lastName }}
+            </td>
+            <td>{{ rooms![reservation.id].name }}</td>
+            <td>{{ reservation.checkIn | date : 'shortDate' }}</td>
+            <td>{{ reservation.checkOut | date : 'shortDate' }}</td>
+            <td>{{ reservation.nbPerson }}</td>
+            <td>
+              <span *ngIf="reservation.status === 'PENDING'" class="p-2 w-fit bg-yellow-500 rounded-full"
+                >En attente</span
+              >
+              <span *ngIf="reservation.status === 'CONFIRMED'" class="p-2 w-fit bg-green-500 rounded-full"
+                >Confirmée</span
+              >
+              <span *ngIf="reservation.status === 'CANCELED'" class="p-2 w-fit bg-red-500 rounded-full">Annulée</span>
+            </td>
+            <td>
+              <button *ngIf="reservation.status === 'PENDING'" (click)="cancelReservation(reservation)">❌</button>
+              <button
+                *ngIf="reservation.status === 'PENDING' && user.role === 'ADMIN'"
+                (click)="acceptReservation(reservation)"
+              >
+                ✅
+              </button>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </ng-container>
+    <div *ngIf="!reservations">
+      <p>Vous n'avez pas encore de réservation</p>
     </div>
   </div>
-  
+</div>

@@ -4,7 +4,7 @@
       <input matInput placeholder="Email" formControlName="email" />
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Password" formControlName="password" type="{{ hide ? 'password' : 'text' }}" />
+      <input matInput placeholder="Mot de passe" formControlName="password" type="{{ hide ? 'password' : 'text' }}" />
       <button
         mat-icon-button
         matSuffix
@@ -18,7 +18,7 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="Confirm Password"
+        placeholder="Confirmer le Mot de Passe"
         formControlName="passwordConfirm"
         type="{{ hideConfirm ? 'password' : 'text' }}"
       />
@@ -33,11 +33,11 @@
       </button>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="First Name" formControlName="firstName" />
+      <input matInput placeholder="Prenom" formControlName="firstName" />
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Last Name" formControlName="lastName" />
+      <input matInput placeholder="Nom" formControlName="lastName" />
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Confirmer</button>
   </form>
 </ng-container>

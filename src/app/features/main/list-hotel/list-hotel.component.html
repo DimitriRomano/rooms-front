@@ -2,6 +2,10 @@
   <div>
     <h2>Sélectionner un hôtel</h2>
   </div>
+  <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
   <div class="list_hotel flex flex-wrap gap-4 justify-center overflow-y-scroll h-[72vh]">
         <app-card-hotel *ngFor='let hotel of hotels' [hotel]='hotel'></app-card-hotel>
   </div>

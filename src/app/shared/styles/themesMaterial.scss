@@ -1,0 +1,28 @@
+//.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+//  border-radius: 6px !important;
+//}
+.mat-sidenav-container {
+  background-color: transparent;
+}
+
+.mat-button-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+
+.mat-drawer-side {
+  border-right: none;
+}
+
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
+mat-card-actions.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}

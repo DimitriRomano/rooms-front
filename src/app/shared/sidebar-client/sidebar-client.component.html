@@ -1,0 +1,30 @@
+<div class="sidenav-content-client">
+  <app-logo></app-logo>
+  <div class="list-link">
+    <div>
+      <a mat-button routerLink="">
+        <mat-icon>home</mat-icon>Accueil
+      </a>
+    </div>
+    <div>
+      <a mat-button routerLink="/reservations">
+        <mat-icon>local_activity</mat-icon>Réservations
+      </a>
+    </div>
+    <div>
+      <a mat-button routerLink="">
+        <mat-icon>settings</mat-icon>Profil
+      </a>
+    </div>
+    <div *ngIf="isAdmin">
+      <a mat-button routerLink='admin'>
+        <mat-icon>key</mat-icon>Panel admin
+      </a>
+    </div>
+  </div>
+  <div>
+    <a mat-button routerLink="" (click)="handleLogout()">
+      <mat-icon class="rotate-180">exit_to_app</mat-icon>Déconnexion
+    </a>
+  </div>
+</div>

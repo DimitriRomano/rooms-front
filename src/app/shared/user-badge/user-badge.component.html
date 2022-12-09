@@ -1,0 +1,21 @@
+<div class="w-full bg-white">
+  <div class="flex items-center space-y-1 ml-2 py-1">
+    <img *ngIf="profilImage; else noimage" class="w-[2.5rem] h-[2.5rem] rounded-full" src="{{ profilImage }}" alt="Image de profil" />
+    <ng-template #noimage><mat-icon class='noimage-icon'>account_circle</mat-icon></ng-template>
+    <div class="ml-10 flex flex-col">
+      <span class="font-bold"> {{ firstName }} {{ lastName }} </span>
+      <span class="text-gray-500 text-sm"> Nouveau membre </span>
+    </div>
+    <div class="ml-auto">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="handleGoToProfile()">
+          <mat-icon>account_circle</mat-icon>
+          <span>Profil</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

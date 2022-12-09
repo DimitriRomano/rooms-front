@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditHotelComponent } from '../../shared/edit-hotel/edit-hotel.component';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { AddHotelComponent } from '../../shared/add-hotel/add-hotel.component';
 import { AddRoomComponent } from '../../shared/add-room/add-room.component';
 import { HotelModel } from 'src/app/api/models';
 import { HotelCtrlService, RoomCtrlService } from 'src/app/api/services';
+import { MatSidenav } from '@angular/material/sidenav';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { HotelCtrlService, RoomCtrlService } from 'src/app/api/services';
   styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  reason = '';
   displayedColumns: string[] = ['position', 'name', 'city', 'country', 'actions'];
 
   dataSource!: MatTableDataSource<HotelModel>;
@@ -98,5 +101,17 @@ export class AdminPanelComponent implements OnInit {
         });
       }
     });
+  }
+
+  openNav() {
+    let button = document.getElementById('open_sidebar_icon');
+    if (button) {
+      button.classList.toggle('rotate-270');
+    }
+  }
+
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
   }
 }

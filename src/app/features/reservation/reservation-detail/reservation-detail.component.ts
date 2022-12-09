@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthModel, BookingModel, RoomModel } from 'src/app/api/models';
 import { AuthCtrlService, BookingCtrlService, HotelCtrlService, RoomCtrlService } from 'src/app/api/services';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-reservation-detail',
   templateUrl: './reservation-detail.component.html',
@@ -29,7 +31,12 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
 
   @Input() public hotelId: number | undefined;
 
-  constructor(private route: ActivatedRoute, private roomService: RoomCtrlService,private reservationService: BookingCtrlService, private authCtrlService: AuthCtrlService ) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private roomService: RoomCtrlService,
+    private reservationService: BookingCtrlService,
+     private authCtrlService: AuthCtrlService,
+    private _snackBar: MatSnackBar ) { }
 
   ngOnInit(): void {
     // if(this.route.snapshot.paramMap.get("id")){
@@ -134,6 +141,10 @@ export class ReservationDetailComponent implements OnInit,OnChanges {
       }).subscribe(
         (data) => {
           this.resetFilter();
+          this._snackBar.open('Réservation envoyé ✅', 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'bottom',
+          });
         }
       );
   }}

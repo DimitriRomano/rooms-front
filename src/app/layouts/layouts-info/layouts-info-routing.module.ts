@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path:'reservations',
-    component: ReservationsComponent
+    loadChildren: () => import('../../features/reservation/reservation.module').then(m => m.ReservationModule)
   }
 ];
 

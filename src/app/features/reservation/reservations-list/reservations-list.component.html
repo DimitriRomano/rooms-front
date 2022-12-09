@@ -5,7 +5,7 @@
             <table class="table-auto">
               <thead>
                   <tr>
-                        <th>Utilisateur</th>
+                        <th *ngIf="user.role == 'ADMIN'">Utilisateur</th>
                         <th>Chambre</th>
                       <th>Date d'arrivée</th>
                       <th>Date de départ</th>
@@ -14,8 +14,8 @@
                       <th>Action</th>
                   </tr>
                   <tr *ngFor="let reservation of reservations" class="text-center">
-                        <td>{{getUser(reservation.authId)}}</td>
-                        <td>{{getRoom(reservation.roomId)}}</td>
+                        <td *ngIf="user.role == 'ADMIN'">{{reservation.authId}}</td>
+                        <td>{{reservation.roomId}}</td>
                       <td>{{reservation.checkIn | date:'shortDate'}}</td>
                       <td>{{reservation.checkOut| date:'shortDate'}}</td>
                       <td>{{reservation.nbPerson}}</td>

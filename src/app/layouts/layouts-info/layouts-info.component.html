@@ -1,4 +1,9 @@
 <ng-container>
+  <hr class="w-4/5 mx-auto" />
+
+  <div *ngIf="!user" style="display: flex; justify-content: center; align-content: center">
+    <a routerLink="/" class="borderBetween" style="text-align: center">Se Connecter</a>
+  </div>
   <app-user-badge
     *ngIf="!!user"
     class="borderBetween"
@@ -9,7 +14,4 @@
   <hr class="w-4/5 mx-auto" />
 
   <router-outlet></router-outlet>
-  <div *ngIf="!user" style="display: flex; justify-content: center; align-content: center">
-    <a routerLink="/" class="borderBetween" style="text-align: center">Se Connecter</a>
-  </div>
 </ng-container>

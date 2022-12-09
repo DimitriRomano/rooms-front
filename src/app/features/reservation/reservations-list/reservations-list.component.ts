@@ -80,6 +80,20 @@ export class ReservationsListComponent implements OnInit {
     }
   }
 
+  public getUser(authId: number | null) {
+    if(!authId) return;
+    this.authService.authCtrlGetOne({id: String(authId)}).subscribe((data) => {
+      return data.firstName + ' ' + data.lastName;
+    })
+  }
+
+  public getRoom(roomId: number | null) {
+    if(!roomId) return;
+    this.roomService.roomCtrlGetOne({id: roomId}).subscribe((data) => {
+      return data.name;
+    })
+  }
+
   cancelReservation(reservation: BookingModel) {
     this.bookingService.bookingCtrlUpdate({
       id : reservation.id,

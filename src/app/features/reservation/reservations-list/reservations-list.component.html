@@ -16,13 +16,13 @@
                       <td>{{reservation.checkOut| date:'shortDate'}}</td>
                       <td>{{reservation.nbPerson}}</td>
                         <td>
-                            <span *ngIf="reservation.status === 'PENDING'" class="p-2 w-fit bg-yellow-500 rounded-full">En attente</span>
-                            <span *ngIf="reservation.status === 'CONFIRMED'" class="p-2 w-fit bg-green-500 rounded-full">Confirmée</span>
-                            <span *ngIf="reservation.status === 'CANCELED'" class="p-2 w-fit bg-red-500 rounded-full">Annulée</span>
+                            <span *ngIf="reservation.status === 'PENDING'" class="px-2 w-fit bg-yellow-500 rounded-full">En attente</span>
+                            <span *ngIf="reservation.status === 'CONFIRMED'" class="px-2 w-fit bg-green-500 rounded-full">Confirmée</span>
+                            <span *ngIf="reservation.status === 'CANCELED'" class="px-2 w-fit bg-red-500 rounded-full">Annulée</span>
                         </td>
                       <td>
-                      <button *ngIf="reservation.status === 'PENDING'" (click)="cancelReservation(reservation)">❌</button>
-                      <button *ngIf="reservation.status === 'PENDING' && user.role==='ADMIN'" (click)="acceptReservation(reservation)">✅</button>
+                      <button *ngIf="reservation.status === 'PENDING'" (click)="cancelReservation(reservation)" class="btnnn">❌</button>
+                      <button *ngIf="reservation.status === 'PENDING' && user.role==='ADMIN'" (click)="acceptReservation(reservation)" class="btnnn">✅</button>
                       </td>
                   </tr>
               </thead>

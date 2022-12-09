@@ -46,7 +46,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     HttpClientModule,
     MatNativeDateModule,
     HttpClientModule,
-    ReservationModule
+    ReservationModule,
   ],
   providers: [
     ApiInterceptor,
